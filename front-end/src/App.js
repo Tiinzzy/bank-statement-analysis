@@ -1,9 +1,15 @@
 import './App.css';
 
+import Header from './components/Header';
+import ChartsAndFilters from './components/ChartsAndFilters';
+import Body from './components/Body';
+
 function App() {
   return (
     <div className="App">
-      <h1>HELLO THERE</h1>
+      <Header />
+      <ChartsAndFilters />
+      <Body />
     </div>
   );
 }
