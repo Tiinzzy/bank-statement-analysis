@@ -4,6 +4,8 @@ import ExpenceGrid from "./ExpenceGrid";
 
 import { shared } from './shared';
 
+import { constants } from './constants';
+
 class Body extends React.Component {
     constructor(props) {
         super(props);
@@ -24,10 +26,16 @@ class Body extends React.Component {
     }
 
     render() {
-        return (<div style={{ padding: 5, border: 'solid 1px gray', height: 700 }}>
-            <div>This is where we put grid and initial text and ...</div>
-            <ExpenceGrid />
-        </div>);
+        return (
+            <div style={{ padding: 5, border: 'solid 1px gray', height: 700 }}>
+                <div pb={10}>
+                    <ol>
+                        {constants.help.map((e, i) => (
+                            <li key={i}>{e}</li>
+                        ))}
+                    </ol>
+                </div>
+            </div>);
     }
 }
 
