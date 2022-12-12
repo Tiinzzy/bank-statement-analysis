@@ -7,12 +7,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import ChangeGridCategoryDialog from "./ChangeGridCategoryDialog";
 
 import { shared } from './shared';
-import { getDataFromPublic, getColumns } from "./functions";
+import { getColumns } from "./functions";
 
 class ExpenceGrid extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: props.data,
             columns: [],
             rows: [],
             openDialog: false,
@@ -25,22 +26,30 @@ class ExpenceGrid extends React.Component {
     }
 
     async componentDidMount() {
-        let data = await getDataFromPublic();
+        let data = this.state.data;
         let columns = getColumns(data[0]);
+        this.setState({ columns }, function () {
+            this.refreshData(data);
+        });
+    }
 
+    refreshData(data) {
         let id = 0;
+        let category = 'None';
         for (let r in data) {
             data[r].id = id;
             id += 1;
+            data[r].category = category;
         }
 
-        this.setState({ columns: columns, rows: data });
-
-        shared.callBody({ data })
+        this.setState({ rows: data });
     }
 
     callExpenceGrid(message) {
-
+        if (message.action === 'show-less-than-100') {
+            let data = this.state.data.filter(d => d.AMOUNT < 100)
+            this.refreshData(data);
+        }
     }
 
     handleGridClick(e) {
@@ -68,7 +77,7 @@ class ExpenceGrid extends React.Component {
                     open={this.state.openDialog}
                     maxWidth='sm' fullWidth={true}>
                     <DialogTitle>Details</DialogTitle>
-                    <ChangeGridCategoryDialog clickedRow={this.state.clickedRow} close={this.handleCloseDialog}/>
+                    <ChangeGridCategoryDialog clickedRow={this.state.clickedRow} close={this.handleCloseDialog} />
                 </Dialog>}
             </div>
         );
