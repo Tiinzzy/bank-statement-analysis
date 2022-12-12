@@ -26,10 +26,10 @@ class Header extends React.Component {
     }
 
     updateExpenceGrid(action) {
-        if (action  === 'update-data') {
+        if (action === 'update-data') {
             shared.callExpenceGrid({ action, rows: [1, 2, 3], checkBox: true });
-        } else if (action  === 'filter-category') { 
-            shared.callExpenceGrid({ action, category: 'commute' });
+        } else if (action === 'show-less-than-100') {
+            shared.callExpenceGrid({ action });
         }
     }
 
@@ -40,7 +40,7 @@ class Header extends React.Component {
                 <div>
                     <button style={{ margin: 10 }} onClick={() => this.updateBody()}>update someting in Body</button>
                     <button style={{ margin: 10 }} onClick={() => this.updateExpenceGrid('update-data')}>send new data to expence grid</button>
-                    <button style={{ margin: 10 }} onClick={() => this.updateExpenceGrid('filter-category')}>filter data for category</button>
+                    <button style={{ margin: 10 }} onClick={() => this.updateExpenceGrid('show-less-than-100')}>Show Less Than 100</button>
                 </div>
             </div>);
     }
