@@ -13,7 +13,7 @@ class Footer extends React.Component {
     render() {
         return (
             <Box style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', textAlign: 'center', fontSize: '10px' }}>
-                Proudly designed by Tina Vatanabadi, Copyright 2022.
+         Designed by Tina Vatanabadi, Copyright 2022.
             </Box>
         );
     }
