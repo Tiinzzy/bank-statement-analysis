@@ -18,12 +18,18 @@ class ChangeGridCategoryDialog extends React.Component {
         super(props);
         this.state = {
             clickedRow: props.clickedRow,
-            close: props.close
+            close: props.close,
+            checkBox: false,
+            category: props.clickedRow.CATEGORY,
         };
         this.callGridDialog = this.callGridDialog.bind(this);
         this.cancelAndClose = this.cancelAndClose.bind(this);
         this.saveEditCategory = this.saveEditCategory.bind(this);
+        this.handleCheckBox = this.handleCheckBox.bind(this);
         shared.callGridDialog = this.callGridDialog;
+    }
+    componentDidMount(){
+        console.log(this.state.clickedRow)
     }
 
     callGridDialog() {
@@ -38,45 +44,49 @@ class ChangeGridCategoryDialog extends React.Component {
         this.state.close();
     }
 
+    handleCheckBox(e) {
+        this.setState({ checkBox: e.target.checked })
+    }
+
     render() {
         return (
             <>
                 <Divider />
-                <Box>
+                <Box style={{ display: 'flex', flexDirection: 'column', margin: '20px 0 20px 30px', }}>
                     <Typography variant="body1">
                         <span className="GridDialogText">Id:</span> {this.state.clickedRow.id}
                     </Typography>
 
-                    <Typography sx={{ mt: 1 }} variant="body1">  <span>Date:</span> {this.state.clickedRow.DATE}</Typography>
+                    <Typography sx={{ mt: 1 }} variant="body1">  Date: {this.state.clickedRow.DATE}</Typography>
 
-                    <Typography sx={{ mt: 1 }} variant="body1">  <span >Description:</span> {this.state.clickedRow.DESC}</Typography>
+                    <Typography sx={{ mt: 1 }} variant="body1">  Description: {this.state.clickedRow.DESC}</Typography>
 
-                    <Typography sx={{ mt: 1 }} variant="body1">  <span >Amount:</span>  ${(this.state.clickedRow.AMOUNT * 1).toFixed(2)}</Typography>
+                    <Typography sx={{ mt: 1 }} variant="body1">  Amount: ${this.state.clickedRow.AMOUNT}</Typography>
 
-                    <Box >
-                        <Typography variant="body1"> <span >Category:</span> </Typography>
+                    <Box style={{ display: 'flex', alignItems: 'center', margin: '20px, 0 30px 0' }}>
+                        <Typography variant="body1"> Category:</Typography>
                         <Select
                             size='small'
                             style={{ width: 300, marginLeft: 10 }}
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={this.state.CATEGORY}
+                            value={this.state.category}
                             onChange={(e) => this.handleChangeCategory(e)}>
                             {constants.categories.map((e, i) => (<MenuItem key={i} value={e}>{e}</MenuItem>))}
                         </Select>
                     </Box>
 
-                    <Box >
+                    <Box style={{ display: 'flex', margin: '20px, 0 20px 0' }}>
                         <FormControlLabel
                             control={<Checkbox checked={this.state.checkBox} onChange={(e) => this.handleCheckBox(e)} />}
-                            label={'Apply ' + this.state.CATEGORY + ' category for similar descriptions?'} />
+                            label={'Apply ' + this.state.category + ' category for similar descriptions?'} />
                     </Box>
-
+                    <br />
                     <Divider />
 
                     <DialogActions style={{ marginTop: 20, marginRight: 20 }}>
                         <Button size='small' onClick={(e) => this.cancelAndClose(e)} variant="outlined" color="error"> Cancel </Button>
-                        <Button size='small' disabled={this.state.CATEGORY === 'None'} onClick={() => this.saveEditCategory()} variant="outlined" color="success">Update</Button>
+                        <Button size='small' disabled={this.state.category === 'None'} onClick={() => this.saveEditCategory()} variant="outlined" color="success">Update</Button>
                     </DialogActions>
                 </Box>
             </>
