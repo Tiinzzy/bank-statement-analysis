@@ -11,6 +11,7 @@ class Body extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isAvailable: null
 
         };
         this.callBody = this.callBody.bind(this);
@@ -19,11 +20,13 @@ class Body extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.setState.message)
 
     }
 
     callBody(message) {
-        console.log(message);
+        // console.log(message.data);
+        this.setState({ isAvailable: message.data })
     }
 
     render() {
