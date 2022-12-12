@@ -1,6 +1,10 @@
 import React from "react";
 
 import { DataGrid } from '@mui/x-data-grid';
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+
+import ChangeGridCategoryDialog from "./ChangeGridCategoryDialog";
 
 import { shared } from './shared';
 import { getDataFromPublic, getColumns } from "./functions";
@@ -10,35 +14,41 @@ class ExpenceGrid extends React.Component {
         super(props);
         this.state = {
             columns: [],
-            rows: []
-
+            rows: [],
+            openDialog: false,
+            clickedRow: ''
         };
         this.callExpenceGrid = this.callExpenceGrid.bind(this);
+        this.handleGridClick = this.handleGridClick.bind(this);
+        this.handleCloseDialog = this.handleCloseDialog.bind(this);
         shared.callExpenceGrid = this.callExpenceGrid;
     }
 
     async componentDidMount() {
         let data = await getDataFromPublic();
         let columns = getColumns(data[0]);
-     
+
         let id = 0;
         for (let r in data) {
             data[r].id = id;
             id += 1;
         }
-        
+
         this.setState({ columns: columns, rows: data });
 
         shared.callBody({ data })
     }
 
     callExpenceGrid(message) {
-        console.log(message);
-        if (message.action === 'update-data') {
-            console.log('now i have to update the whole grid data');
-        } else if (message.action === 'filter-category') {
-            console.log('now i have to just filter over the given category');
-        }
+
+    }
+
+    handleGridClick(e) {
+        this.setState({ openDialog: true, clickedRow: e.row });
+    }
+
+    handleCloseDialog() {
+        this.setState({ openDialog: false })
     }
 
 
@@ -50,7 +60,16 @@ class ExpenceGrid extends React.Component {
                     hideFooterPagination={true}
                     hideFooter={true}
                     rows={this.state.rows}
-                    columns={this.state.columns} />
+                    columns={this.state.columns}
+                    onCellDoubleClick={(e) => this.handleGridClick(e)} />
+
+                {this.state.openDialog && <Dialog
+                    onClose={() => this.handleCloseDialog()}
+                    open={this.state.openDialog}
+                    maxWidth='sm' fullWidth={true}>
+                    <DialogTitle>Details</DialogTitle>
+                    <ChangeGridCategoryDialog clickedRow={this.state.clickedRow} close={this.handleCloseDialog}/>
+                </Dialog>}
             </div>
         );
     }
