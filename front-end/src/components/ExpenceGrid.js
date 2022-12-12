@@ -26,11 +26,9 @@ class ExpenceGrid extends React.Component {
     }
 
     async componentDidMount() {
-        let data = this.state.data;
+        let data = this.refreshData(this.state.data);
         let columns = getColumns(data[0]);
-        this.setState({ columns }, function () {
-            this.refreshData(data);
-        });
+        this.setState({ columns });
     }
 
     refreshData(data) {
@@ -41,8 +39,8 @@ class ExpenceGrid extends React.Component {
             id += 1;
             data[r].category = category;
         }
-
         this.setState({ rows: data });
+        return data;
     }
 
     callExpenceGrid(message) {
