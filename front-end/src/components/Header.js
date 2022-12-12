@@ -26,9 +26,9 @@ class Header extends React.Component {
     }
 
     updateExpenceGrid(action) {
-        if (action  === 'update-data') {
+        if (action === 'update-data') {
             shared.callExpenceGrid({ action, rows: [1, 2, 3], checkBox: true });
-        } else if (action  === 'filter-category') { 
+        } else if (action === 'filter-category') {
             shared.callExpenceGrid({ action, category: 'commute' });
         }
     }
