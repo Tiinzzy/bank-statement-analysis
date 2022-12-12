@@ -6,12 +6,14 @@ import ExpenceGrid from "./ExpenceGrid";
 
 import { shared } from './shared';
 import { constants } from './constants';
+import { getDataFromPublic } from "./functions";
+
 
 class Body extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isAvailable: null
+            data: []
 
         };
         this.callBody = this.callBody.bind(this);
@@ -19,21 +21,20 @@ class Body extends React.Component {
 
     }
 
-    componentDidMount() {
-        console.log(this.setState.message)
-
+    async componentDidMount() {
+        let data = await getDataFromPublic();
+        this.setState({ data });
     }
 
     callBody(message) {
-        // console.log(message.data);
-        this.setState({ isAvailable: message.data })
+        console.log(message);
     }
 
     render() {
         return (
             <Box style={{ padding: 5, border: 'solid 1px gray', height: 700 }}>
-                {this.state.message !== null ?
-                    <ExpenceGrid />
+                {this.state.data.length > 0 ?
+                    <ExpenceGrid data={this.state.data} />
                     : <Box pb={10}>
                         <ol>
                             {constants.help.map((e, i) => (
