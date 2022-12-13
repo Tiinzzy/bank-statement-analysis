@@ -3,11 +3,13 @@ import React from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
+import Snackbar from '@mui/material/Snackbar';
+import SnackbarContent from '@mui/material/SnackbarContent'
 
 import ChangeGridCategoryDialog from "./ChangeGridCategoryDialog";
 
 import { shared } from './shared';
-import { getColumns, getGridHeight, getGridWidth} from "./functions";
+import { getColumns, getGridHeight, getGridWidth } from "./functions";
 
 class ExpenceGrid extends React.Component {
     constructor(props) {
@@ -19,18 +21,26 @@ class ExpenceGrid extends React.Component {
             openDialog: false,
             clickedRow: '',
             height: getGridHeight(),
-            width: getGridWidth()
+            width: getGridWidth(),
+            openSnack: false
         };
         this.callExpenceGrid = this.callExpenceGrid.bind(this);
         this.handleGridClick = this.handleGridClick.bind(this);
         this.handleCloseDialog = this.handleCloseDialog.bind(this);
+        this.handleScreenResize = this.handleScreenResize.bind(this);
+        this.handleCloseSnack = this.handleCloseSnack.bind(this);
         shared.callExpenceGrid = this.callExpenceGrid;
     }
 
     async componentDidMount() {
+        window.addEventListener("resize", this.handleScreenResize);
         let data = this.refreshData(this.state.data);
         let columns = getColumns(data[0]);
         this.setState({ columns });
+    }
+
+    handleScreenResize() {
+        this.setState({ height: getGridHeight(), width: getGridWidth() });
     }
 
     refreshData(data) {
@@ -46,9 +56,12 @@ class ExpenceGrid extends React.Component {
     }
 
     callExpenceGrid(message) {
+        console.log(message)
         if (message.action === 'show-less-than-100') {
             let data = this.state.data.filter(d => d.AMOUNT < 100)
             this.refreshData(data);
+        } else if (message.action === 'submit-sucessfull') {
+            this.setState({ openSnack: true })
         }
     }
 
@@ -58,6 +71,10 @@ class ExpenceGrid extends React.Component {
 
     handleCloseDialog() {
         this.setState({ openDialog: false })
+    }
+
+    handleCloseSnack() {
+        this.setState({ openSnack: false, message: null });
     }
 
     render() {
@@ -79,6 +96,14 @@ class ExpenceGrid extends React.Component {
                     <ChangeGridCategoryDialog clickedRow={this.state.clickedRow} close={this.handleCloseDialog} />
                 </Dialog>}
 
+                <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center', }}
+                    open={this.state.openSnack}
+                    autoHideDuration={2000}
+                    onClose={this.handleCloseSnack}>
+                    <SnackbarContent style={{ backgroundColor: '#63A355', color: 'white', fontWeight: 'bold' }}
+                        message={<div style={{ textAlign: 'center', width: 400 }}>Category Successfully Changed to {this.state.clickedRow.category}</div>} />
+                </Snackbar>
             </div>
         );
     }
