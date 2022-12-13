@@ -26,9 +26,10 @@ class ChangeGridCategoryDialog extends React.Component {
         this.cancelAndClose = this.cancelAndClose.bind(this);
         this.saveEditCategory = this.saveEditCategory.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
+        this.handleChangeCategory = this.handleChangeCategory.bind(this);
         shared.callGridDialog = this.callGridDialog;
     }
-    componentDidMount(){
+    componentDidMount() {
         console.log(this.state.clickedRow)
     }
 
@@ -46,6 +47,10 @@ class ChangeGridCategoryDialog extends React.Component {
 
     handleCheckBox(e) {
         this.setState({ checkBox: e.target.checked })
+    }
+
+    handleChangeCategory(e) {
+        this.setState({ category: e.target.value });
     }
 
     render() {
