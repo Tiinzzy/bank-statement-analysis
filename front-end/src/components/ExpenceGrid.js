@@ -34,7 +34,7 @@ class ExpenceGrid extends React.Component {
     }
 
     refreshData(data) {
-        let id = 0;
+        let id = 1000;
         let category = 'None';
         for (let r in data) {
             data[r].id = id;
