@@ -32,7 +32,7 @@ class Body extends React.Component {
 
     render() {
         return (
-            <Box style={{ padding: 5, border: 'solid 1px gray', height: 700 }}>
+            <Box style={{ padding: 15}}>
                 {this.state.data.length > 0 ?
                     <ExpenceGrid data={this.state.data} />
                     : <Box pb={10}>
