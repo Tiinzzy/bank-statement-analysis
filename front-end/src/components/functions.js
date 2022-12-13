@@ -38,3 +38,19 @@ export function getColumns(row) {
 
     return columns;
 }
+
+export function getGridHeight() {
+    let height = window.innerHeight - 180;
+    if (height < 100) {
+        height = 100;
+    }
+    return height;
+}
+
+export function getGridWidth() {
+    let width = window.innerWidth - 40;
+    if (width < 20) {
+        width = 20;
+    }
+    return width;
+}
