@@ -7,7 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import ChangeGridCategoryDialog from "./ChangeGridCategoryDialog";
 
 import { shared } from './shared';
-import { getColumns } from "./functions";
+import { getColumns, getGridHeight, getGridWidth} from "./functions";
 
 class ExpenceGrid extends React.Component {
     constructor(props) {
@@ -17,7 +17,9 @@ class ExpenceGrid extends React.Component {
             columns: [],
             rows: [],
             openDialog: false,
-            clickedRow: ''
+            clickedRow: '',
+            height: getGridHeight(),
+            width: getGridWidth()
         };
         this.callExpenceGrid = this.callExpenceGrid.bind(this);
         this.handleGridClick = this.handleGridClick.bind(this);
@@ -58,12 +60,11 @@ class ExpenceGrid extends React.Component {
         this.setState({ openDialog: false })
     }
 
-
     render() {
         return (
             <div>
                 <DataGrid
-                    style={{ height: 700, width: '100%' }}
+                    style={{ height: this.state.height, width: this.state.width }}
                     hideFooterPagination={true}
                     hideFooter={true}
                     rows={this.state.rows}
@@ -77,6 +78,7 @@ class ExpenceGrid extends React.Component {
                     <DialogTitle>Details</DialogTitle>
                     <ChangeGridCategoryDialog clickedRow={this.state.clickedRow} close={this.handleCloseDialog} />
                 </Dialog>}
+
             </div>
         );
     }
