@@ -20,19 +20,19 @@ class ChangeGridCategoryDialog extends React.Component {
             clickedRow: props.clickedRow,
             close: props.close,
             checkBox: false,
-            category: props.clickedRow.CATEGORY,
+            category: props.clickedRow.category
         };
         this.callGridDialog = this.callGridDialog.bind(this);
         this.cancelAndClose = this.cancelAndClose.bind(this);
         this.saveEditCategory = this.saveEditCategory.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
+        this.handleChangeCategory = this.handleChangeCategory.bind(this);
         shared.callGridDialog = this.callGridDialog;
     }
-    componentDidMount(){
-        console.log(this.state.clickedRow)
+    componentDidMount() {
     }
 
-    callGridDialog() {
+    callGridDialog(message) {
 
     }
 
@@ -42,10 +42,16 @@ class ChangeGridCategoryDialog extends React.Component {
 
     saveEditCategory() {
         this.state.close();
+        shared.callExpenceGrid({ action: 'submit-sucessfull' })
+
     }
 
     handleCheckBox(e) {
         this.setState({ checkBox: e.target.checked })
+    }
+
+    handleChangeCategory(e) {
+        this.setState({ category: e.target.value });
     }
 
     render() {
@@ -63,7 +69,7 @@ class ChangeGridCategoryDialog extends React.Component {
 
                     <Typography sx={{ mt: 1 }} variant="body1">  Amount: ${this.state.clickedRow.AMOUNT}</Typography>
 
-                    <Box style={{ display: 'flex', alignItems: 'center', margin: '20px, 0 30px 0' }}>
+                    <Box style={{ display: 'flex', alignItems: 'center', margin: '15px 0 10px 0' }}>
                         <Typography variant="body1"> Category:</Typography>
                         <Select
                             size='small'
@@ -76,7 +82,7 @@ class ChangeGridCategoryDialog extends React.Component {
                         </Select>
                     </Box>
 
-                    <Box style={{ display: 'flex', margin: '20px, 0 20px 0' }}>
+                    <Box style={{ display: 'flex'}}>
                         <FormControlLabel
                             control={<Checkbox checked={this.state.checkBox} onChange={(e) => this.handleCheckBox(e)} />}
                             label={'Apply ' + this.state.category + ' category for similar descriptions?'} />

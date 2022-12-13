@@ -1,5 +1,7 @@
 import React from "react";
 
+import FilePicker from "./FilePicker";
+
 import { shared } from './shared';
 
 class Header extends React.Component {
@@ -36,11 +38,11 @@ class Header extends React.Component {
     render() {
         return (
             <div style={{ padding: 5, border: 'solid 1px red' }}>
-                This is header and probably the place to put upload file (i suggest top right)
                 <div>
-                    <button style={{ margin: 10 }} onClick={() => this.updateBody()}>update someting in Body</button>
+                    <FilePicker />
+                    {/* <button style={{ margin: 10 }} onClick={() => this.updateBody()}>update someting in Body</button>
                     <button style={{ margin: 10 }} onClick={() => this.updateExpenceGrid('update-data')}>send new data to expence grid</button>
-                    <button style={{ margin: 10 }} onClick={() => this.updateExpenceGrid('show-less-than-100')}>Show Less Than 100</button>
+                    <button style={{ margin: 10 }} onClick={() => this.updateExpenceGrid('show-less-than-100')}>Show Less Than 100</button> */}
                 </div>
             </div>);
     }
