@@ -37,7 +37,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <div style={{ padding: 5, border: 'solid 1px red' }}>
+            <div style={{ padding:10, display: 'flex', flexDirection: 'row', justifyContent: 'right', marginRight:5 }}>
                 <div>
                     <FilePicker />
                     {/* <button style={{ margin: 10 }} onClick={() => this.updateBody()}>update someting in Body</button>
