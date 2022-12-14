@@ -54,3 +54,19 @@ export function getGridWidth() {
     }
     return width;
 }
+
+export async function saveCsvFile(data) {
+    console.log(data);
+    console.log(1111111111);
+    return axios.post('/save-csv-file', {}, { params: { data: data } })
+        .then(response => {
+            if (response.status === 200) {
+                return response.data.success;
+            } else {
+                return false;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+}
