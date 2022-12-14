@@ -10,8 +10,7 @@ import { shared } from './shared';
 const csv = require('csvtojson');
 
 export default function FilePicker(props) {
-    const [, setJCsv] = useState(null);
-    const [gridRef,] = useState(React.createRef());
+    const [jCsv, setJCsv] = useState(null);
 
     const [openFileSelector, { filesContent, clear }] = useFilePicker({
         accept: '.CSV',
@@ -25,17 +24,15 @@ export default function FilePicker(props) {
         let saveData = {};
         csvData.forEach(row => {
             row.id = id++;
-            row.CATEGORY = 'None';
+            row.category = 'None';
             data[row.id] = row;
             row.AMOUNT = (row.AMOUNT * 1).toFixed(2);
             saveData[row.id] = row;
         });
 
         setJCsv(saveData);
-
-        if (gridRef.current !== null) {
-            gridRef.current.refreshGrid(saveData);
-        }
+        shared.callBody({action: 'new-file-uploaded-successfully'})
+      
         clear();
     }
 
