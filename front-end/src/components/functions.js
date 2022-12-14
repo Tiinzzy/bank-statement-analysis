@@ -19,7 +19,7 @@ export function getColumns(row) {
     var defaultColumns = [];
 
     for (var c in row) {
-        let col = { field: c, headerName: c.toUpperCase(), width: (c === 'DESC' ? 600 : 200) };
+        let col = { field: c, headerName: c.toUpperCase(), width: (c === 'DESC' ? 550 : 150) };
         if (col.field === 'AMOUNT') {
             col.type = 'number';
             col.align = 'right';
