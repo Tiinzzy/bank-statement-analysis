@@ -1,8 +1,11 @@
 import React from "react";
 
 import Box from "@mui/material/Box";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
 
 import ExpenceGrid from "./ExpenceGrid";
+import UploadFileDialog from "./UploadFileDialog";
 
 import { shared } from './shared';
 import { constants } from './constants';
@@ -13,12 +16,12 @@ class Body extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
-
+            data: [],
+            openDialog: false
         };
         this.callBody = this.callBody.bind(this);
+        this.handleCloseDialog = this.handleCloseDialog.bind(this);
         shared.callBody = this.callBody;
-
     }
 
     async componentDidMount() {
@@ -28,11 +31,18 @@ class Body extends React.Component {
 
     callBody(message) {
         console.log(message);
+        if (message.action === 'new-file-uploaded-successfully') {
+            this.setState({ openDialog: true })
+        }
+    }
+
+    handleCloseDialog() {
+        this.setState({ openDialog: false })
     }
 
     render() {
         return (
-            <Box style={{ padding: 15}}>
+            <Box style={{ padding: 15 }}>
                 {this.state.data.length > 0 ?
                     <ExpenceGrid data={this.state.data} />
                     : <Box pb={10}>
@@ -42,6 +52,15 @@ class Body extends React.Component {
                             ))}
                         </ol>
                     </Box>}
+
+                {this.state.openDialog && <Dialog
+                    onClose={() => this.handleCloseDialog()}
+                    open={this.state.openDialog}
+                    maxWidth='sm' fullWidth={true}>
+                    <DialogTitle>New File Details</DialogTitle>
+                    <UploadFileDialog close={this.handleCloseDialog} />
+                </Dialog>}
+
             </Box>);
     }
 }
