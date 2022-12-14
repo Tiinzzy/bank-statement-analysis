@@ -2,7 +2,6 @@ import React from "react";
 
 import Box from "@mui/material/Box";
 import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
 
 import ExpenceGrid from "./ExpenceGrid";
 import UploadFileDialog from "./UploadFileDialog";
@@ -30,9 +29,11 @@ class Body extends React.Component {
     }
 
     callBody(message) {
-        console.log(message);
         if (message.action === 'new-file-uploaded-successfully') {
             this.setState({ openDialog: true })
+        }
+        else {
+            this.setState({ data: message.data })
         }
     }
 
@@ -56,9 +57,8 @@ class Body extends React.Component {
                 {this.state.openDialog && <Dialog
                     onClose={() => this.handleCloseDialog()}
                     open={this.state.openDialog}
-                    maxWidth='sm' fullWidth={true}>
-                    <DialogTitle>New File Details</DialogTitle>
-                    <UploadFileDialog close={this.handleCloseDialog} />
+                    maxWidth='xl' fullWidth={true}>
+                    <UploadFileDialog close={this.handleCloseDialog} data={this.state.data}/>
                 </Dialog>}
 
             </Box>);
