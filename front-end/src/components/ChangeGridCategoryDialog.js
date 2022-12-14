@@ -60,17 +60,17 @@ class ChangeGridCategoryDialog extends React.Component {
                 <Divider />
                 <Box style={{ display: 'flex', flexDirection: 'column', margin: '20px 0 20px 30px', }}>
                     <Typography variant="body1">
-                        <span className="GridDialogText">Id:</span> {this.state.clickedRow.id}
+                        <span style={{ fontWeight: 'bold' }}>Id:</span> {this.state.clickedRow.id}
                     </Typography>
 
-                    <Typography sx={{ mt: 1 }} variant="body1">  Date: {this.state.clickedRow.DATE}</Typography>
+                    <Typography sx={{ mt: 1 }} variant="body1">  <span style={{ fontWeight: 'bold' }}>Date:</span> {this.state.clickedRow.DATE}</Typography>
 
-                    <Typography sx={{ mt: 1 }} variant="body1">  Description: {this.state.clickedRow.DESC}</Typography>
+                    <Typography sx={{ mt: 1 }} variant="body1">  <span style={{ fontWeight: 'bold' }}>Description:</span> {this.state.clickedRow.DESC}</Typography>
 
-                    <Typography sx={{ mt: 1 }} variant="body1">  Amount: ${this.state.clickedRow.AMOUNT}</Typography>
+                    <Typography sx={{ mt: 1 }} variant="body1">  <span style={{ fontWeight: 'bold' }}>Amount:</span> ${this.state.clickedRow.AMOUNT}</Typography>
 
                     <Box style={{ display: 'flex', alignItems: 'center', margin: '15px 0 10px 0' }}>
-                        <Typography variant="body1"> Category:</Typography>
+                        <Typography variant="body1"> <span style={{ fontWeight: 'bold' }}>Category:</span></Typography>
                         <Select
                             size='small'
                             style={{ width: 300, marginLeft: 10 }}
@@ -82,7 +82,7 @@ class ChangeGridCategoryDialog extends React.Component {
                         </Select>
                     </Box>
 
-                    <Box style={{ display: 'flex'}}>
+                    <Box style={{ display: 'flex' }}>
                         <FormControlLabel
                             control={<Checkbox checked={this.state.checkBox} onChange={(e) => this.handleCheckBox(e)} />}
                             label={'Apply ' + this.state.category + ' category for similar descriptions?'} />

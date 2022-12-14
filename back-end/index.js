@@ -13,6 +13,12 @@ app.listen(PORT, () => {
     res.json(dataServices.saveCsvFile(req));
   })
 
+
+  app.get("/test", (req, res) => {
+    console.log('TEST GET');
+    res.json({ test: 'test' });
+  })
+
 });
 
 

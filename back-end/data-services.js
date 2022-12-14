@@ -3,6 +3,9 @@ const db = new JSONdb('./data.json');
 
 exports.saveCsvFile = (req) => {
     let data = req.query.data;
+    console.log(data)
+
+
     if (typeof data === "object") {
         db.JSON(data);
         db.sync();

@@ -19,7 +19,7 @@ export function getColumns(row) {
     var defaultColumns = [];
 
     for (var c in row) {
-        let col = { field: c, headerName: c.toUpperCase(), width: (c === 'DESC' ? 600 : 200) };
+        let col = { field: c, headerName: c.toUpperCase(), width: (c === 'DESC' ? 550 : 150) };
         if (col.field === 'AMOUNT') {
             col.type = 'number';
             col.align = 'right';
@@ -53,4 +53,20 @@ export function getGridWidth() {
         width = 20;
     }
     return width;
+}
+
+export async function saveCsvFile(data) {
+    console.log(data);
+    console.log(1111111111);
+    return axios.post('/save-csv-file', {}, { params: { data: data } })
+        .then(response => {
+            if (response.status === 200) {
+                return response.data.success;
+            } else {
+                return false;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
 }
