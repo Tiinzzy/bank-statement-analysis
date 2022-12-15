@@ -39,7 +39,7 @@ class ChartsAndFilters extends React.Component {
             <Box style={{ padding: 14 }}>
                 <ToggleButtonGroup
                     size="small"
-                    color="primary"
+                    color="secondary"
                     value={this.state.toggleValue}
                     exclusive
                     onChange={(e) => this.handleChangeToggle(e)}
