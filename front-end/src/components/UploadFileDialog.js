@@ -26,7 +26,6 @@ class UploadFileDialog extends React.Component {
         let data = this.refreshData(Object.values(this.state.data));
         let columns = getColumns(data[0]);
         this.setState({ columns });
-        console.log(this.state.data)
     }
 
     refreshData(data) {
@@ -42,9 +41,9 @@ class UploadFileDialog extends React.Component {
     }
 
     async save() {
-        let storedSuccessfully = await saveCsvFile(this.state.data);
+        await saveCsvFile(Object.values(this.state.data));
         this.state.close();
-        shared.callBody({ action: storedSuccessfully ? 'new-uploaded-file-saved' : 'problem-uploading-data' })
+        shared.callBody({ action: 'new-uploaded-file-saved-successfuly', data: this.state.data })
     }
 
     cancelAndClose(e) {
@@ -57,9 +56,9 @@ class UploadFileDialog extends React.Component {
                 {this.state.rows.length > 100 ? <DialogTitle>Can't Save the selected CSV file!</DialogTitle>
                     : <DialogTitle>Would You Like to Save the Following Data?</DialogTitle>}
                 <Divider />
-                <Box style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 25, paddingRight: 10 }}>
+                <Box style={{ display: 'flex', flexDirection: 'row', border: 'solid 1px #eaeaea', margin: 15, borderRadius: 2 }}>
                     {this.state.rows.length > 100 ?
-                        <Box p={2}>
+                        <Box style={{ display: 'flex', flexDirection: 'row', margin: 10 }}>
                             <Typography variant="body1" component="div" style={{ lineHeight: '160%' }}>
                                 Number of rows of the file  you have uploaded is <span style={{ color: "red" }}> {this.state.rows.length}</span>.
                                 <br />
@@ -67,7 +66,7 @@ class UploadFileDialog extends React.Component {
                             </Typography>
                         </Box> :
                         <DataGrid
-                            style={{ height: 400, width: 1320 }}
+                            style={{ height: 400, width: 1100 }}
                             hideFooterPagination={true}
                             hideFooter={true}
                             rows={this.state.rows}
@@ -75,7 +74,7 @@ class UploadFileDialog extends React.Component {
                 </Box>
 
                 {this.state.rows.length > 100 ? null :
-                    <Box variant="body1" style={{ marginLeft: 25, marginTop: 10, marginBottom: 10 }}>
+                    <Box variant="body1" style={{ marginLeft: 15, marginTop: 15, marginBottom: 10 }}>
                         <Box> * Number of Rows in Uploaded Data: <span style={{ fontWeight: 'bold' }}>{this.state.rows.length}</span></Box>
                         <br />
                         <Box> * Saving the New File Will Remove any Pre-existing Data.</Box>

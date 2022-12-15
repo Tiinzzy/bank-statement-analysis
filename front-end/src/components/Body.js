@@ -10,7 +10,7 @@ import SnackbarContent from '@mui/material/SnackbarContent'
 
 import { shared } from './shared';
 import { constants } from './constants';
-import { getDataFromPublic } from "./functions";
+import { getCsvFileFromBackend, getDataFromPublic } from "./functions";
 
 
 class Body extends React.Component {
@@ -28,17 +28,30 @@ class Body extends React.Component {
     }
 
     async componentDidMount() {
-        let data = await getDataFromPublic();
+        let data = await getCsvFileFromBackend();
         this.setState({ data });
     }
 
-    callBody(message) {
+    async callBody(message) {
         if (message.action === 'new-file-uploaded-successfully') {
             this.setState({ openDialog: true, newData: message.data })
-        }
-        else if (message.action === 'new-uploaded-file-saved') {
+
+        } else if (message.action === 'new-uploaded-file-saved') {
             this.setState({ openSnack: true })
+
+        } else if (message.action === 'new-uploaded-file-saved-successfuly') {
+            this.setState({ data: message.data }, function () {
+                shared.callExpenceGrid({ action: 'refresh-data', data: message.data });
+            });
+
+        } else if (message.action === 'read-data-again') {
+            let data = await getCsvFileFromBackend();
+            this.setState({ data: data }, function () {
+                shared.callExpenceGrid({ action: 'refresh-data', data: data });
+            });
         }
+
+
     }
 
     handleCloseDialog() {
@@ -65,7 +78,7 @@ class Body extends React.Component {
                 {this.state.openDialog && <Dialog
                     onClose={() => this.handleCloseDialog()}
                     open={this.state.openDialog}
-                    maxWidth='xl' fullWidth={true}>
+                    maxWidth='lg' fullWidth={true}>
                     <UploadFileDialog close={this.handleCloseDialog} data={this.state.newData} />
                 </Dialog>}
 

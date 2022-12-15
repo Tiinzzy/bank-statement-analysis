@@ -56,12 +56,55 @@ export function getGridWidth() {
 }
 
 export async function saveCsvFile(data) {
-    console.log(data);
-    console.log(1111111111);
     return axios.post('/save-csv-file', {}, { params: { data: data } })
         .then(response => {
             if (response.status === 200) {
                 return response.data.success;
+            } else {
+                return false;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+}
+
+export async function setNewCategory(query) {
+    return axios.post('/set-categories-for-csv-file', {}, { params: { query: query } })
+        .then(response => {
+            if (response.status === 200) {
+                return response.data.success;
+            } else {
+                return false;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+}
+
+export function stringWordsEqual(s1, s2, wordCount = 2) {
+    let cleanS1 = s1.toLowerCase().split(' ').filter(e => e !== '');
+    let cleanS2 = s2.toLowerCase().split(' ').filter(e => e !== '');
+
+    if (cleanS1.length < wordCount || cleanS2.length < wordCount) {
+        return false;
+    }
+
+    for (let i = 0; i < wordCount; i++) {
+        if (cleanS1[i] !== cleanS2[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+export async function getCsvFileFromBackend() {
+    return axios.get('/send-the-saved-csv-file', {}, { params: {} })
+        .then(response => {
+            if (response.status === 200) {                
+                return Object.values(response.data);
             } else {
                 return false;
             }

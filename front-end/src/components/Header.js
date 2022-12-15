@@ -1,5 +1,7 @@
 import React from "react";
 
+import Box from "@mui/system/Box";
+
 import FilePicker from "./FilePicker";
 
 import { shared } from './shared';
@@ -37,14 +39,11 @@ class Header extends React.Component {
 
     render() {
         return (
-            <div style={{ padding:10, display: 'flex', flexDirection: 'row', justifyContent: 'right', marginRight:5 }}>
-                <div>
-                    <FilePicker />
-                    {/* <button style={{ margin: 10 }} onClick={() => this.updateBody()}>update someting in Body</button>
-                    <button style={{ margin: 10 }} onClick={() => this.updateExpenceGrid('update-data')}>send new data to expence grid</button>
-                    <button style={{ margin: 10 }} onClick={() => this.updateExpenceGrid('show-less-than-100')}>Show Less Than 100</button> */}
-                </div>
-            </div>);
+            <Box style={{ borderBottom:'solid 5px #fbc531',  padding: 10, display: 'flex', flexDirection: 'row', justifyContent: 'right', backgroundColor: '#063970' }}>
+                <Box flexGrow={1} style={{ textAlign: 'center', padding: 10, color: '#f5f5ff', fontWeight:'normal' }}>Bank Statement Analysis </Box>
+                <FilePicker />
+            </ Box>
+        );
     }
 }
 

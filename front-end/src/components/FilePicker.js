@@ -31,8 +31,8 @@ export default function FilePicker(props) {
         });
 
         setJCsv(saveData);
-        shared.callBody({action: 'new-file-uploaded-successfully', data: saveData})
-      
+        shared.callBody({ action: 'new-file-uploaded-successfully', data: Object.values(saveData) })
+
         clear();
     }
 
@@ -43,7 +43,7 @@ export default function FilePicker(props) {
 
     return (
         <>
-            <Button size="small" variant="outlined" onClick={() => openFileSelector()}>Select File </Button>
+            <Button size="small" variant="contained" onClick={() => openFileSelector()}>Select File </Button>
             {filesContent.map((file, i) => (
                 <Box key={i}>{processContent(file.content, i)}</Box>))}
         </>
