@@ -34,6 +34,7 @@ class Body extends React.Component {
 
     callBody(message) {
         if (message.action === 'new-file-uploaded-successfully') {
+            console.log(message)
             this.setState({ openDialog: true, newData: message.data })
         }
         else if (message.action === 'new-uploaded-file-saved') {
