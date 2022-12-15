@@ -66,7 +66,7 @@ class Body extends React.Component {
                 {this.state.openDialog && <Dialog
                     onClose={() => this.handleCloseDialog()}
                     open={this.state.openDialog}
-                    maxWidth='xl' fullWidth={true}>
+                    maxWidth='lg' fullWidth={true}>
                     <UploadFileDialog close={this.handleCloseDialog} data={this.state.newData} />
                 </Dialog>}
 
