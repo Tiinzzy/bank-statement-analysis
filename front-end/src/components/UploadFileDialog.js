@@ -41,9 +41,9 @@ class UploadFileDialog extends React.Component {
     }
 
     async save() {
-        let storedSuccessfully = await saveCsvFile(Object.values(this.state.data));
+        await saveCsvFile(Object.values(this.state.data));
         this.state.close();
-        shared.callExpenceGrid({ action: 'new-uploaded-file-saved-successfuly', data: this.state.data })
+        shared.callBody({ action: 'new-uploaded-file-saved-successfuly', data: this.state.data })
     }
 
     cancelAndClose(e) {
