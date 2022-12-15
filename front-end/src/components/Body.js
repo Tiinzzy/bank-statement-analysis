@@ -32,18 +32,26 @@ class Body extends React.Component {
         this.setState({ data });
     }
 
-    callBody(message) {
+    async callBody(message) {
         if (message.action === 'new-file-uploaded-successfully') {
             this.setState({ openDialog: true, newData: message.data })
-        }
-        else if (message.action === 'new-uploaded-file-saved') {
+
+        } else if (message.action === 'new-uploaded-file-saved') {
             this.setState({ openSnack: true })
-        }
-        else if (message.action === 'new-uploaded-file-saved-successfuly') {
+
+        } else if (message.action === 'new-uploaded-file-saved-successfuly') {
             this.setState({ data: message.data }, function () {
                 shared.callExpenceGrid({ action: 'refresh-data', data: message.data });
             });
+
+        } else if (message.action === 'read-data-again') {
+            let data = await getCsvFileFromBackend();
+            this.setState({ data: data }, function () {
+                shared.callExpenceGrid({ action: 'refresh-data', data: data });
+            });
         }
+
+
     }
 
     handleCloseDialog() {
