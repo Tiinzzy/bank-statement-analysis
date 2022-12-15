@@ -55,14 +55,13 @@ class ChangeGridCategoryDialog extends React.Component {
                 id: this.state.clickedRow.id,
                 CATEGORY: this.state.category
             };
-            console.log(query);
             await setNewCategory(query);
             this.state.close();
         }
 
-
         this.state.close();
-        shared.callExpenceGrid({action: 'submit-sucessfull'})
+        shared.callExpenceGrid({ action: 'submit-sucessfull' })
+        shared.callBody({ action: 'read-data-again' });
     }
 
     handleCheckBox(e) {
@@ -103,7 +102,7 @@ class ChangeGridCategoryDialog extends React.Component {
 
                     <Box style={{ display: 'flex' }}>
                         <FormControlLabel
-                            control={<Checkbox checked={this.state.checkBox} onChange={(e) => this.handleCheckBox(e)} />}
+                            control={<Checkbox checked={this.state.checkBox} onChange={(e) => this.handleCheckBox(e)} color="secondary"/>}
                             label={'Apply ' + this.state.category + ' category for similar descriptions?'} />
                     </Box>
                     <br />
