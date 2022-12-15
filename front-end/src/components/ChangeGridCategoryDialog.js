@@ -10,6 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
+import { setNewCategory, stringWordsEqual } from './functions';
 import { shared } from './shared';
 import { constants } from './constants';
 
@@ -20,7 +21,8 @@ class ChangeGridCategoryDialog extends React.Component {
             clickedRow: props.clickedRow,
             close: props.close,
             checkBox: false,
-            category: props.clickedRow.category
+            category: props.clickedRow.category,
+            data: props.data
         };
         this.callGridDialog = this.callGridDialog.bind(this);
         this.cancelAndClose = this.cancelAndClose.bind(this);
@@ -40,10 +42,27 @@ class ChangeGridCategoryDialog extends React.Component {
         this.state.close(e);
     }
 
-    saveEditCategory() {
-        this.state.close();
-        shared.callExpenceGrid({ action: 'submit-sucessfull' })
+    async saveEditCategory() {
+        if (this.state.checkBox) {
+            let query = {
+                id: this.state.data.filter(e => stringWordsEqual(this.state.clickedRow.DESC, e.DESC)).map(e => e.id),
+                CATEGORY: this.state.category
+            };
+            await setNewCategory(query);
+            this.state.close();
+        } else {
+            let query = {
+                id: this.state.clickedRow.id,
+                CATEGORY: this.state.category
+            };
+            console.log(query);
+            await setNewCategory(query);
+            this.state.close();
+        }
 
+
+        this.state.close();
+        shared.callExpenceGrid({action: 'submit-sucessfull'})
     }
 
     handleCheckBox(e) {
