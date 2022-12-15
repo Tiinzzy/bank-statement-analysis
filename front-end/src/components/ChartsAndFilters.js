@@ -1,14 +1,21 @@
 import React from "react";
 
+import Box from "@mui/material/Box";
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+
 import { shared } from './shared';
+import { constants } from './constants';
 
 class ChartsAndFilters extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            toggleValue: 'All'
         };
         this.callChartsAndFilters = this.callChartsAndFilters.bind(this);
+        this.handleChangeToggle = this.handleChangeToggle.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         shared.callChartsAndFilters = this.callChartsAndFilters;
     }
 
@@ -18,8 +25,29 @@ class ChartsAndFilters extends React.Component {
     callChartsAndFilters(message) {
         console.log(message);
     }
+
+    handleChangeToggle(e) {
+        this.setState({ toggleValue: e.target.value })
+    }
+
+    handleClick(e) {
+        this.setState({ toggleValue: e.target.value })
+    }
+
     render() {
-        return <div style={{ padding: 5, border: 'solid 1px blue' }}>This is where we put fast category filters and charts menu</div>;
+        return (
+            <Box style={{ padding: 14 }}>
+                <ToggleButtonGroup
+                    size="small"
+                    color="primary"
+                    value={this.state.toggleValue}
+                    exclusive
+                    onChange={(e) => this.handleChangeToggle(e)}
+                    aria-label="Platform">
+                    {constants.categories.map((e, i) => <ToggleButton key={i} value={e} onclick={(e) => this.handleClick(e)}>{e}</ToggleButton>)}
+                </ToggleButtonGroup>
+            </Box>
+        );
     }
 }
 
