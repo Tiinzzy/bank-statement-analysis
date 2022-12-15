@@ -10,7 +10,7 @@ import SnackbarContent from '@mui/material/SnackbarContent'
 
 import { shared } from './shared';
 import { constants } from './constants';
-import { getDataFromPublic } from "./functions";
+import { getCsvFileFromBackend, getDataFromPublic } from "./functions";
 
 
 class Body extends React.Component {
@@ -28,17 +28,21 @@ class Body extends React.Component {
     }
 
     async componentDidMount() {
-        let data = await getDataFromPublic();
+        let data = await getCsvFileFromBackend();
         this.setState({ data });
     }
 
     callBody(message) {
         if (message.action === 'new-file-uploaded-successfully') {
-            console.log(message)
             this.setState({ openDialog: true, newData: message.data })
         }
         else if (message.action === 'new-uploaded-file-saved') {
             this.setState({ openSnack: true })
+        }
+        else if (message.action === 'new-uploaded-file-saved-successfuly') {
+            this.setState({ data: message.data }, function () {
+                shared.callExpenceGrid({ action: 'refresh-data', data: message.data });
+            });
         }
     }
 
