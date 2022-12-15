@@ -4,7 +4,7 @@
         "DESC": "LLS CANADA TORONTO ON",
         "AMOUNT": "102.00",
         "id": "1000",
-        "category": "None"
+        "category": "Misc"
     },
     "1001": {
         "DATE": "2022-09-30",
@@ -18,7 +18,7 @@
         "DESC": "MAGASIN CDN TIRE #0043 WESTMOUNT QC",
         "AMOUNT": "182.80",
         "id": "1002",
-        "category": "None"
+        "category": "Houseware"
     },
     "1003": {
         "DATE": "2022-10-01",
@@ -123,7 +123,7 @@
         "DESC": "BELL CANADA (OB)",
         "AMOUNT": "149.86",
         "id": "1017",
-        "category": "None"
+        "category": "Utilities"
     },
     "1018": {
         "DATE": "2022-10-11",
@@ -557,7 +557,7 @@
         "DESC": "BELL CANADA (OB) MONTREAL QC",
         "AMOUNT": "147.17",
         "id": "1079",
-        "category": "None"
+        "category": "Utilities"
     },
     "1080": {
         "DATE": "2022-11-10",
