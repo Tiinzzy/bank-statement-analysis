@@ -43,7 +43,7 @@ export default function FilePicker(props) {
 
     return (
         <>
-            <Button size="small" variant="outlined" onClick={() => openFileSelector()}>Select File </Button>
+            <Button size="small" variant="contained" onClick={() => openFileSelector()}>Select File </Button>
             {filesContent.map((file, i) => (
                 <Box key={i}>{processContent(file.content, i)}</Box>))}
         </>
