@@ -23,11 +23,11 @@ class ChartsAndFilters extends React.Component {
     }
 
     callChartsAndFilters(message) {
-        console.log(message);
     }
 
     handleChangeToggle(e) {
         this.setState({ toggleValue: e.target.value })
+        shared.callExpenceGrid({ action: 'filter-over-category', category: e.target.value })
     }
 
     handleClick(e) {
@@ -44,7 +44,7 @@ class ChartsAndFilters extends React.Component {
                     exclusive
                     onChange={(e) => this.handleChangeToggle(e)}
                     aria-label="Platform">
-                    {constants.categories.map((e, i) => <ToggleButton key={i} value={e} onclick={(e) => this.handleClick(e)}>{e}</ToggleButton>)}
+                    {constants.categories.map((e, i) => <ToggleButton key={i} value={e} onClick={(e) => this.handleClick(e)}>{e}</ToggleButton>)}
                 </ToggleButtonGroup>
             </Box>
         );
