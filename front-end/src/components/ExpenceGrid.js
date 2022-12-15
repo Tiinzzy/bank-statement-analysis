@@ -62,6 +62,9 @@ class ExpenceGrid extends React.Component {
             this.refreshData(data);
         } else if (message.action === 'submit-sucessfull') {
             this.setState({ openSnack: true })
+        } else if (message.action === 'new-uploaded-file-saved-successfuly') {
+            let updatedData = Object.values(message.data);
+            this.setState({ rows: this.refreshData(updatedData) })
         }
     }
 
