@@ -31,8 +31,8 @@ export default function FilePicker(props) {
         });
 
         setJCsv(saveData);
-        shared.callBody({action: 'new-file-uploaded-successfully', data: saveData})
-      
+        shared.callBody({ action: 'new-file-uploaded-successfully', data: Object.values(saveData) })
+
         clear();
     }
 
