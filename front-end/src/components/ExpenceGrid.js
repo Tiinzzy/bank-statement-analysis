@@ -44,27 +44,28 @@ class ExpenceGrid extends React.Component {
     }
 
     refreshData(data) {
-        let id = 1000;
-        let category = 'None';
-        for (let r in data) {
-            data[r].id = id;
-            id += 1;
-            data[r].category = category;
-        }
         this.setState({ rows: data });
         return data;
     }
 
     callExpenceGrid(message) {
-        console.log(message)
         if (message.action === 'show-less-than-100') {
             let data = this.state.data.filter(d => d.AMOUNT < 100)
             this.refreshData(data);
+
         } else if (message.action === 'submit-sucessfull') {
             this.setState({ openSnack: true })
+
         } else if (message.action === 'new-uploaded-file-saved-successfuly') {
-            let updatedData = Object.values(message.data);
+            var updatedData = Object.values(message.data);
             this.setState({ rows: this.refreshData(updatedData) })
+
+        } else if (message.action === 'filter-over-category') {
+            let rows = this.state.data.filter(e => message.category === 'All' || e.category === message.category);
+            this.setState({ rows: rows });
+
+        } else if (message.action === 'refresh-data') {
+            this.setState({ data: message.data, rows: message.data });
         }
     }
 
@@ -96,7 +97,7 @@ class ExpenceGrid extends React.Component {
                     open={this.state.openDialog}
                     maxWidth='sm' fullWidth={true}>
                     <DialogTitle>Details</DialogTitle>
-                    <ChangeGridCategoryDialog clickedRow={this.state.clickedRow} close={this.handleCloseDialog} />
+                    <ChangeGridCategoryDialog clickedRow={this.state.clickedRow} close={this.handleCloseDialog} data={this.state.rows} />
                 </Dialog>}
 
                 <Snackbar
