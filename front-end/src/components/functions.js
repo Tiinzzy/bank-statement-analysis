@@ -56,8 +56,6 @@ export function getGridWidth() {
 }
 
 export async function saveCsvFile(data) {
-    console.log(data);
-    console.log(1111111111);
     return axios.post('/save-csv-file', {}, { params: { data: data } })
         .then(response => {
             if (response.status === 200) {
