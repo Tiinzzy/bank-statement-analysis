@@ -39,9 +39,10 @@ class Header extends React.Component {
 
     render() {
         return (
-            <Box style={{ padding: 10, display: 'flex', flexDirection: 'row', justifyContent: 'right', }}>
+            <Box style={{ borderBottom:'solid 5px #fbc531',  padding: 10, display: 'flex', flexDirection: 'row', justifyContent: 'right', backgroundColor: '#063970' }}>
+                <Box flexGrow={1} style={{ textAlign: 'center', padding: 10, color: '#f5f5ff', fontWeight:'normal' }}>Bank Statement Analysis </Box>
                 <FilePicker />
-            </Box>
+            </ Box>
         );
     }
 }
