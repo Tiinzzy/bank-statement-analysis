@@ -13,10 +13,14 @@ app.listen(PORT, () => {
     res.json(dataServices.saveCsvFile(req));
   })
 
+  app.post("/set-categories-for-csv-file", (req, res) => {
+    console.log('Setting Categories for CSV File');
+    res.json(dataServices.setNewCategories(req));
+  })
 
-  app.get("/test", (req, res) => {
-    console.log('TEST GET');
-    res.json({ test: 'test' });
+  app.get("/send-the-saved-csv-file", (req, res) => {
+    console.log('Sending CSV File');
+    res.json(dataServices.getCsvFileData(req));
   })
 
 });
