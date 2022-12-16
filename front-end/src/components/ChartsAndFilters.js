@@ -14,12 +14,14 @@ import GraphDialogDisplay from "./GraphDialogDisplay";
 
 import { shared } from './shared';
 import { constants } from './constants';
+import { getDailyAmount } from './functions';
 
 class ChartsAndFilters extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             toggleValue: 'All',
+            data: null,
             distribution: null,
             openMenu: false,
             anchorEl: null,
@@ -33,13 +35,9 @@ class ChartsAndFilters extends React.Component {
         shared.callChartsAndFilters = this.callChartsAndFilters;
     }
 
-    componentDidMount() {
-    }
-
     callChartsAndFilters(message) {
         if (message.action === 'getting-data') {
             this.setState({ data: message.data })
-
             let distribution = {};
 
             constants.categories.forEach(c => {
@@ -47,25 +45,22 @@ class ChartsAndFilters extends React.Component {
                 let sum = this.state.data.filter(d => d.category === c).map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0)
                 distribution[c] = { sum, count };
             });
+
             distribution['All'] = {
                 sum: this.state.data.map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0),
                 count: this.state.data.length
             };
 
-            const arrayOfObj = Object.entries(distribution).map((e) => ({ [e[0]]: e[1] }));
-            console.log(arrayOfObj)
-
-            this.setState({ distribution: null }, function () {
-                this.setState({ distribution: distribution });
+            this.setState({ distribution: null, data: message.data }, function () {
+                this.setState({ distribution: distribution, data: message.data });
             });
+
         }
     }
 
     handleChangeToggle(e) {
         this.setState({ toggleValue: e.target.value })
         shared.callExpenceGrid({ action: 'filter-over-category', category: e.target.value })
-
-        console.log(this.state.distribution)
     }
 
     handleClick(e) {
@@ -99,11 +94,11 @@ class ChartsAndFilters extends React.Component {
                         exclusive
                         onChange={(e) => this.handleChangeToggle(e)}
                         aria-label="Platform">
-                        {constants.categories.map((e, i) =>
+                        {this.state.distribution !== null && constants.categories.map((e, i) =>
                             <ToggleButton
                                 key={i} value={e}
                                 onClick={(e) => this.handleClick(e)}>
-                                {e}
+                                {e +' (' + this.state.distribution[e].count + ') '}
                             </ToggleButton>)}
                     </ToggleButtonGroup>
                 </Box>
@@ -131,7 +126,8 @@ class ChartsAndFilters extends React.Component {
                     open={this.state.graphDialog} maxWidth='lg' fullWidth={true}>
                     <DialogTitle>Expenses Chart</DialogTitle>
                     <GraphDialogDisplay
-                        graphIndex={this.state.graphIndex} />
+                        graphIndex={this.state.graphIndex}
+                        dailyData={this.state.dailyAmountData} />
                 </Dialog>
             </Box>
         );
