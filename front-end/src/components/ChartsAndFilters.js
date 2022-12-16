@@ -37,24 +37,24 @@ class ChartsAndFilters extends React.Component {
 
     callChartsAndFilters(message) {
         if (message.action === 'getting-data') {
-            this.setState({ data: message.data })
-            let distribution = {};
+            this.setState({ data: message.data }, function () {
+                let distribution = {};
 
-            constants.categories.forEach(c => {
-                let count = this.state.data.filter(d => d.category === c).length;
-                let sum = this.state.data.filter(d => d.category === c).map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0)
-                distribution[c] = { sum, count };
-            });
+                constants.categories.forEach(c => {
+                    let count = this.state.data.filter(d => d.category === c).length;
+                    let sum = this.state.data.filter(d => d.category === c).map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0)
+                    distribution[c] = { sum, count };
+                });
 
-            distribution['All'] = {
-                sum: this.state.data.map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0),
-                count: this.state.data.length
-            };
+                distribution['All'] = {
+                    sum: this.state.data.map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0),
+                    count: this.state.data.length
+                };
 
-            this.setState({ distribution: null, data: message.data }, function () {
-                this.setState({ distribution: distribution, data: message.data });
-            });
-
+                this.setState({ distribution: null, data: message.data }, function () {
+                    this.setState({ distribution: distribution, data: message.data });
+                });
+            })
         }
     }
 
@@ -98,7 +98,7 @@ class ChartsAndFilters extends React.Component {
                             <ToggleButton
                                 key={i} value={e}
                                 onClick={(e) => this.handleClick(e)}>
-                                {e +' (' + this.state.distribution[e].count + ') '}
+                                {e + ' (' + this.state.distribution[e].count + ') '}
                             </ToggleButton>)}
                     </ToggleButtonGroup>
                 </Box>
@@ -120,7 +120,6 @@ class ChartsAndFilters extends React.Component {
                         </Box>
                     </Menu>
                 </Box>
-
                 <Dialog
                     onClose={() => this.setState({ graphDialog: false })}
                     open={this.state.graphDialog} maxWidth='lg' fullWidth={true}>
