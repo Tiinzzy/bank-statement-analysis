@@ -10,7 +10,7 @@ import SnackbarContent from '@mui/material/SnackbarContent'
 
 import { shared } from './shared';
 import { constants } from './constants';
-import { getCsvFileFromBackend, getDataFromPublic } from "./functions";
+import { getCsvFileFromBackend } from "./functions";
 
 
 class Body extends React.Component {
@@ -30,6 +30,7 @@ class Body extends React.Component {
     async componentDidMount() {
         let data = await getCsvFileFromBackend();
         this.setState({ data });
+        shared.callChartsAndFilters({ action: 'getting-data', data: data })
     }
 
     async callBody(message) {
