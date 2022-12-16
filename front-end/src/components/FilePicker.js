@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -10,8 +10,6 @@ import { shared } from './shared';
 const csv = require('csvtojson');
 
 export default function FilePicker(props) {
-    const [jCsv, setJCsv] = useState(null);
-
     const [openFileSelector, { filesContent, clear }] = useFilePicker({
         accept: '.CSV',
     });
@@ -30,7 +28,6 @@ export default function FilePicker(props) {
             saveData[row.id] = row;
         });
 
-        setJCsv(saveData);
         shared.callBody({ action: 'new-file-uploaded-successfully', data: Object.values(saveData) })
 
         clear();
