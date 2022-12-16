@@ -113,3 +113,14 @@ export async function getCsvFileFromBackend() {
             return false;
         });
 }
+
+export function getDailyAmount(data) {
+    let dateSet = new Set(data.map(e => e.DATE));
+    let dailyAmount = [...dateSet].map(e => { return { Date: e, AMOUNT: getDailyAmountSummary(data, e) } });
+    return dailyAmount;
+}
+
+function getDailyAmountSummary(data, d) {
+    let dateSummary = data.filter(e => e.DATE === d).map(e => e.AMOUNT * 1).reduce((a, b) => (a + b), 0);
+    return dateSummary;
+}
