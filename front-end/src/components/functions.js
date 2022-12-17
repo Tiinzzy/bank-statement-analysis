@@ -103,7 +103,7 @@ export function stringWordsEqual(s1, s2, wordCount = 2) {
 export async function getCsvFileFromBackend() {
     return axios.get('/send-the-saved-csv-file', {}, { params: {} })
         .then(response => {
-            if (response.status === 200) {                
+            if (response.status === 200) {
                 return Object.values(response.data);
             } else {
                 return false;
@@ -112,4 +112,35 @@ export async function getCsvFileFromBackend() {
         .catch(error => {
             return false;
         });
+}
+
+export function getDailyAmount(data) {
+    let dateSet = new Set(data.map(e => e.DATE));
+    let dailyAmount = [...dateSet].map(e => { return { Date: e, AMOUNT: getDailyAmountSummary(data, e) } });
+    return dailyAmount;
+}
+
+function getDailyAmountSummary(data, d) {
+    let dateSummary = data.filter(e => e.DATE === d).map(e => e.AMOUNT * 1).reduce((a, b) => (a + b), 0);
+    return dateSummary;
+}
+
+export function getWeekDaysAmount(data) {
+    return [0, 1, 2, 3, 4, 5, 6].map(wdId => { return { Date: constants.dayOfWeek[wdId], AMOUNT: getWeekDaySummary(data, wdId) } });
+}
+
+function getWeekDaySummary(data, wdId) {
+    return data.filter(d => string2Date(d.DATE).getDay() === wdId).map(e => e.AMOUNT * 1).reduce((a, b) => (a + b), 0);
+}
+
+function string2Date(dateStr) {
+    let parts = dateStr.split('-');
+    let d = new Date();
+    d.setYear(parts[0] * 1);
+    d.setMonth(parts[1] * 1 - 1);
+    d.setDate(parts[2] * 1);
+    d.setHours(0);
+    d.setMinutes(0);
+    d.setSeconds(0);
+    return d;
 }

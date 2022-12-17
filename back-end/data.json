@@ -39,7 +39,7 @@
         "DESC": "BUDGET RENT-A-CAR DORVAL ON",
         "AMOUNT": "145.89",
         "id": "1005",
-        "category": "None"
+        "category": "Commute"
     },
     "1006": {
         "DATE": "2022-10-03",
@@ -95,7 +95,7 @@
         "DESC": "IGA 8217 MONTREAL QC",
         "AMOUNT": "18.75",
         "id": "1013",
-        "category": "None"
+        "category": "Groceries"
     },
     "1014": {
         "DATE": "2022-10-10",
@@ -249,14 +249,14 @@
         "DESC": "IGA 8093",
         "AMOUNT": "29.66",
         "id": "1035",
-        "category": "None"
+        "category": "Groceries"
     },
     "1036": {
         "DATE": "2022-10-21",
         "DESC": "LA BAIE D'HUDSON #1601 MONTREAL QC",
         "AMOUNT": "339.18",
         "id": "1036",
-        "category": "None"
+        "category": "Clothing"
     },
     "1037": {
         "DATE": "2022-10-22",
@@ -298,7 +298,7 @@
         "DESC": "IGA 8217",
         "AMOUNT": "23.20",
         "id": "1042",
-        "category": "None"
+        "category": "Groceries"
     },
     "1043": {
         "DATE": "2022-10-24",
@@ -312,7 +312,7 @@
         "DESC": "IGA 8093 MONTREAL QC",
         "AMOUNT": "16.86",
         "id": "1044",
-        "category": "None"
+        "category": "Groceries"
     },
     "1045": {
         "DATE": "2022-10-25",
@@ -354,21 +354,21 @@
         "DESC": "BMO CC BAL INS TAX",
         "AMOUNT": "0.70",
         "id": "1050",
-        "category": "None"
+        "category": "Misc"
     },
     "1051": {
         "DATE": "2022-10-28",
         "DESC": "BMO CC BAL INS",
         "AMOUNT": "7.73",
         "id": "1051",
-        "category": "None"
+        "category": "Misc"
     },
     "1052": {
         "DATE": "2022-10-28",
         "DESC": "IGA 8217 MONTREAL QC",
         "AMOUNT": "29.44",
         "id": "1052",
-        "category": "None"
+        "category": "Groceries"
     },
     "1053": {
         "DATE": "2022-10-28",
@@ -389,28 +389,28 @@
         "DESC": "LA MAISON SIMONS INC ( MONTREAL QC",
         "AMOUNT": "28.74",
         "id": "1055",
-        "category": "None"
+        "category": "Clothing"
     },
     "1056": {
         "DATE": "2022-10-29",
         "DESC": "FIDO STORE 5238",
         "AMOUNT": "40.24",
         "id": "1056",
-        "category": "None"
+        "category": "Misc"
     },
     "1057": {
         "DATE": "2022-10-29",
         "DESC": "DECATHLON MONTREAL EAT MONTREAL QC",
         "AMOUNT": "45.99",
         "id": "1057",
-        "category": "None"
+        "category": "Clothing"
     },
     "1058": {
         "DATE": "2022-10-30",
         "DESC": "CORA MONTREAL CENTRE MONTREAL QC",
         "AMOUNT": "65.05",
         "id": "1058",
-        "category": "None"
+        "category": "Dining"
     },
     "1059": {
         "DATE": "2022-10-31",
@@ -424,7 +424,7 @@
         "DESC": "PHARMAPRIX 42 MONTREAL QC",
         "AMOUNT": "11.52",
         "id": "1060",
-        "category": "None"
+        "category": "Medicine"
     },
     "1061": {
         "DATE": "2022-11-01",
@@ -459,7 +459,7 @@
         "DESC": "IGA 8217 MONTREAL QC",
         "AMOUNT": "23.05",
         "id": "1065",
-        "category": "None"
+        "category": "Groceries"
     },
     "1066": {
         "DATE": "2022-11-03",
@@ -487,7 +487,7 @@
         "DESC": "PHARMAPRIX 42 MONTREAL QC",
         "AMOUNT": "14.06",
         "id": "1069",
-        "category": "None"
+        "category": "Medicine"
     },
     "1070": {
         "DATE": "2022-11-04",
@@ -585,7 +585,7 @@
         "DESC": "IGA 8093",
         "AMOUNT": "12.99",
         "id": "1083",
-        "category": "None"
+        "category": "Groceries"
     },
     "1084": {
         "DATE": "2022-11-12",
@@ -641,7 +641,7 @@
         "DESC": "IGA 8093 MONTREAL QC",
         "AMOUNT": "17.10",
         "id": "1091",
-        "category": "None"
+        "category": "Groceries"
     },
     "1092": {
         "DATE": "2022-11-15",
@@ -655,7 +655,7 @@
         "DESC": "PHARMAPRIX 42 MONTREAL QC",
         "AMOUNT": "19.23",
         "id": "1093",
-        "category": "None"
+        "category": "Medicine"
     },
     "1094": {
         "DATE": "2022-11-16",
