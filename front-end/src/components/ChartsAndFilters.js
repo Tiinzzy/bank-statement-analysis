@@ -14,7 +14,6 @@ import GraphDialogDisplay from "./GraphDialogDisplay";
 
 import { shared } from './shared';
 import { constants } from './constants';
-import { getDailyAmount } from './functions';
 
 class ChartsAndFilters extends React.Component {
     constructor(props) {
@@ -125,8 +124,7 @@ class ChartsAndFilters extends React.Component {
                     open={this.state.graphDialog} maxWidth='lg' fullWidth={true}>
                     <DialogTitle>Expenses Chart</DialogTitle>
                     <GraphDialogDisplay
-                        graphIndex={this.state.graphIndex}
-                        dailyData={this.state.dailyAmountData} />
+                        graphIndex={this.state.graphIndex}/>
                 </Dialog>
             </Box>
         );
