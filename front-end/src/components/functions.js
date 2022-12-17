@@ -103,7 +103,7 @@ export function stringWordsEqual(s1, s2, wordCount = 2) {
 export async function getCsvFileFromBackend() {
     return axios.get('/send-the-saved-csv-file', {}, { params: {} })
         .then(response => {
-            if (response.status === 200) {                
+            if (response.status === 200) {
                 return Object.values(response.data);
             } else {
                 return false;
