@@ -4,14 +4,7 @@ import { Chart } from "react-google-charts";
 import Box from '@mui/material/Box';
 
 export default function GraphDialogDisplay(props) {
-    var options = {
-        isStacked: true,
-        bars: "horizontal",
-        bar: { groupWidth: '75%' },
-        legend: { position: 'top', maxLines: 3 },
-        chartArea: {'width': '85%', 'height': '75%'}
-    };
-
+    
     return (
         <Box style={{ margin: 20 }}>
             {props.graphIndex === 1 && <Chart
@@ -25,9 +18,8 @@ export default function GraphDialogDisplay(props) {
             />}
 
             {props.graphIndex === 3 && <Chart
-                chartType="ColumnChart"
+                chartType="Bar"
                 height={window.innerHeight / 2}
-                options={options}
             />}
         </Box>
     );
