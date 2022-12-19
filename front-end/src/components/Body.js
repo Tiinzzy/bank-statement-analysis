@@ -19,7 +19,8 @@ class Body extends React.Component {
         this.state = {
             data: [],
             openDialog: false,
-            openSnack: false
+            openSnack: false,
+            showHelp: true
         };
         this.callBody = this.callBody.bind(this);
         this.handleCloseDialog = this.handleCloseDialog.bind(this);
@@ -42,13 +43,13 @@ class Body extends React.Component {
 
         } else if (message.action === 'new-uploaded-file-saved-successfuly') {
             this.setState({ data: message.data }, function () {
-                shared.callExpenceGrid({ action: 'refresh-data', data: message.data });
+                shared.callExpenceGrid({ action: 'refresh-data', data: message.data, showHelp: false });
             });
 
         } else if (message.action === 'read-data-again') {
             let data = await getCsvFileFromBackend();
             this.setState({ data: data }, function () {
-                shared.callExpenceGrid({ action: 'refresh-data', data: data });
+                shared.callExpenceGrid({ action: 'refresh-data', data: data, showHelp: false });
             });
         }
 
@@ -61,14 +62,15 @@ class Body extends React.Component {
 
     handleCloseSnack() {
         this.setState({ openSnack: false, message: null });
-    }
 
+    }
     render() {
         return (
             <Box style={{ padding: 15 }}>
-                {this.state.data.length > 0 ?
-                    <ExpenceGrid data={this.state.data} />
-                    : <Box pb={10}>
+                {this.state.data.length > 0 && this.state.showHelp &&
+                    <ExpenceGrid data={this.state.data} />}
+                {this.state.showHelp &&
+                    <Box pb={10}>
                         <ol>
                             {constants.help.map((e, i) => (
                                 <li key={i}>{e}</li>
