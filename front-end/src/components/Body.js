@@ -67,10 +67,9 @@ class Body extends React.Component {
     render() {
         return (
             <Box style={{ padding: 15 }}>
-                {this.state.data.length > 0 && this.state.showHelp &&
-                    <ExpenceGrid data={this.state.data} />}
-                {this.state.showHelp &&
-                    <Box pb={10}>
+                {this.state.data.length > 0 ?
+                    <ExpenceGrid data={this.state.data} />
+                    : <Box pb={10}>
                         <ol>
                             {constants.help.map((e, i) => (
                                 <li key={i}>{e}</li>
