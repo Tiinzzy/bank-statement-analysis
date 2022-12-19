@@ -60,7 +60,7 @@
         "DESC": "METRO ETS  2416",
         "AMOUNT": "19.84",
         "id": "1008",
-        "category": "None"
+        "category": "Groceries"
     },
     "1009": {
         "DATE": "2022-10-06",
@@ -165,7 +165,7 @@
         "DESC": "OLD NAVY CANADA 3788",
         "AMOUNT": "28.73",
         "id": "1023",
-        "category": "None"
+        "category": "Clothing"
     },
     "1024": {
         "DATE": "2022-10-15",
@@ -242,7 +242,7 @@
         "DESC": "METRO ETS  2416",
         "AMOUNT": "25.95",
         "id": "1034",
-        "category": "None"
+        "category": "Groceries"
     },
     "1035": {
         "DATE": "2022-10-20",
@@ -599,7 +599,7 @@
         "DESC": "JEAN COUTU 350 MONTREAL QC",
         "AMOUNT": "15.86",
         "id": "1085",
-        "category": "None"
+        "category": "Medicine"
     },
     "1086": {
         "DATE": "2022-11-12",
@@ -662,6 +662,6 @@
         "DESC": "METRO ETS  2416",
         "AMOUNT": "42.88",
         "id": "1094",
-        "category": "None"
+        "category": "Groceries"
     }
 }

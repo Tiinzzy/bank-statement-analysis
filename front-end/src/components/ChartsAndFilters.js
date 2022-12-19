@@ -9,11 +9,14 @@ import MenuItem from '@mui/material/MenuItem';
 import Divider from "@mui/material/Divider";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
+import Popover from '@mui/material/Popover';
 
 import GraphDialogDisplay from "./GraphDialogDisplay";
 
 import { shared } from './shared';
 import { constants } from './constants';
+
+const MAX_BAR_WIDTH = 800;
 
 class ChartsAndFilters extends React.Component {
     constructor(props) {
@@ -24,13 +27,16 @@ class ChartsAndFilters extends React.Component {
             distribution: null,
             openMenu: false,
             anchorEl: null,
-            graphDialog: false
+            graphDialog: false,
+            openPopover: false,
+            popoverAnchorEl: null
         };
         this.callChartsAndFilters = this.callChartsAndFilters.bind(this);
         this.handleChangeToggle = this.handleChangeToggle.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleOpenCharts = this.handleOpenCharts.bind(this);
         this.handleCloseCharts = this.handleCloseCharts.bind(this);
+        this.handleClosePopover = this.handleClosePopover.bind(this);
         shared.callChartsAndFilters = this.callChartsAndFilters;
     }
 
@@ -82,6 +88,10 @@ class ChartsAndFilters extends React.Component {
         }
     }
 
+    handleClosePopover() {
+        this.setState({ openPopover: false, popoverAnchorEl: null,  rowsSum: this.state.data.map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0)  })
+    }
+
     render() {
         return (
             <Box style={{ display: 'flex' }}>
@@ -95,6 +105,8 @@ class ChartsAndFilters extends React.Component {
                         aria-label="Platform">
                         {this.state.distribution !== null && constants.categories.map((e, i) =>
                             <ToggleButton
+                                onMouseEnter={(e) => this.setState({ openPopover: true, popoverAnchorEl: e.target })}
+                                onMouseLeave={(e) => this.handleClosePopover()}
                                 key={i} value={e}
                                 onClick={(e) => this.handleClick(e)}>
                                 {e + ' (' + this.state.distribution[e].count + ') '}
@@ -124,8 +136,32 @@ class ChartsAndFilters extends React.Component {
                     open={this.state.graphDialog} maxWidth='lg' fullWidth={true}>
                     <DialogTitle>Expenses Chart</DialogTitle>
                     <GraphDialogDisplay
-                        graphIndex={this.state.graphIndex}/>
+                        graphIndex={this.state.graphIndex} />
                 </Dialog>
+
+                <Popover
+                    sx={{ pointerEvents: 'none', }}
+                    open={this.state.openPopover}
+                    anchorEl={this.state.popoverAnchorEl}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                    onClose={this.handleClosePopover}
+                    disableRestoreFocus>
+                    {this.state.popoverAnchorEl && <Box style={{ display: 'flex', flexDirection: 'column', paddingTop: 15, paddingLeft: 10, paddingRight: 10 }}>
+                        {constants.categories.filter(e => e !== 'All').map((e, i) =>
+                            <Box key={i} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', fontSize: '75%', marginBottom: '10px' }}>
+                                <Box display='flex'>
+                                    <Box> {e} </Box>
+                                    <Box flexGrow={1} />
+                                    <Box>{'$ ' + this.state.distribution[e].sum.toFixed(2)} </Box>
+                                </Box>
+                                <Box style={{
+                                    width: ((this.state.distribution[e].sum * 1) / (this.state.rowsSum) * MAX_BAR_WIDTH),
+                                    border: 'solid 2px ' + (e === this.state.popoverAnchorEl.value ? 'darkred' : 'steelblue')
+                                }}></Box>
+                            </Box>)}
+                    </Box>}
+                </Popover>
             </Box>
         );
     }
