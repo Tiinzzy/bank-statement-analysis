@@ -16,6 +16,8 @@ import GraphDialogDisplay from "./GraphDialogDisplay";
 import { shared } from './shared';
 import { constants } from './constants';
 
+const MAX_BAR_WIDTH = 800;
+
 class ChartsAndFilters extends React.Component {
     constructor(props) {
         super(props);
@@ -27,8 +29,7 @@ class ChartsAndFilters extends React.Component {
             anchorEl: null,
             graphDialog: false,
             openPopover: false,
-            popoverAnchorEl: null,
-            rowsSum: 0
+            popoverAnchorEl: null
         };
         this.callChartsAndFilters = this.callChartsAndFilters.bind(this);
         this.handleChangeToggle = this.handleChangeToggle.bind(this);
@@ -88,7 +89,7 @@ class ChartsAndFilters extends React.Component {
     }
 
     handleClosePopover() {
-        this.setState({ openPopover: false, popoverAnchorEl: null, rowsSum: this.state.data.map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0) })
+        this.setState({ openPopover: false, popoverAnchorEl: null,  rowsSum: this.state.data.map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0)  })
     }
 
     render() {
@@ -146,16 +147,16 @@ class ChartsAndFilters extends React.Component {
                     transformOrigin={{ vertical: 'top', horizontal: 'left' }}
                     onClose={this.handleClosePopover}
                     disableRestoreFocus>
-                    {this.state.popoverAnchorEl && <Box>
+                    {this.state.popoverAnchorEl && <Box style={{ display: 'flex', flexDirection: 'column', paddingTop: 15, paddingLeft: 10, paddingRight: 10 }}>
                         {constants.categories.filter(e => e !== 'All').map((e, i) =>
-                            <Box key={i}>
+                            <Box key={i} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', fontSize: '75%', marginBottom: '10px' }}>
                                 <Box display='flex'>
                                     <Box> {e} </Box>
                                     <Box flexGrow={1} />
                                     <Box>{'$ ' + this.state.distribution[e].sum.toFixed(2)} </Box>
                                 </Box>
                                 <Box style={{
-                                    width: ((this.state.distribution[e].sum * 1) / (this.state.rowsSum) * 800),
+                                    width: ((this.state.distribution[e].sum * 1) / (this.state.rowsSum) * MAX_BAR_WIDTH),
                                     border: 'solid 2px ' + (e === this.state.popoverAnchorEl.value ? 'darkred' : 'steelblue')
                                 }}></Box>
                             </Box>)}
