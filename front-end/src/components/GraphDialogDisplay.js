@@ -10,6 +10,7 @@ export default function GraphDialogDisplay(props) {
             {props.graphIndex === 1 && <Chart
                 chartType="Bar"
                 height={window.innerHeight / 2}
+                data={props.data}
             />}
 
             {props.graphIndex === 2 && <Chart
