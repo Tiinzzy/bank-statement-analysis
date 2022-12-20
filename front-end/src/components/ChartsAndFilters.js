@@ -149,7 +149,7 @@ class ChartsAndFilters extends React.Component {
                     disableRestoreFocus>
                     {this.state.popoverAnchorEl && <Box style={{ display: 'flex', flexDirection: 'column', paddingTop: 15, paddingLeft: 10, paddingRight: 10 }}>
                         {constants.categories.filter(e => e !== 'All').map((e, i) =>
-                            <Box key={i} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', fontSize: '75%', marginBottom: '10px' }}>
+                            <Box key={i} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', fontSize: '75%', marginBottom: '10px', borderBottom: 'solid 1px #eaeaea' }}>
                                 <Box display='flex'>
                                     <Box> {e} </Box>
                                     <Box flexGrow={1} />
