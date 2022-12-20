@@ -15,6 +15,7 @@ import GraphDialogDisplay from "./GraphDialogDisplay";
 
 import { shared } from './shared';
 import { constants } from './constants';
+import { getDailyAmount } from './functions';
 
 const MAX_BAR_WIDTH = 800;
 
@@ -40,6 +41,10 @@ class ChartsAndFilters extends React.Component {
         shared.callChartsAndFilters = this.callChartsAndFilters;
     }
 
+    componentDidMount() {
+
+    }
+
     callChartsAndFilters(message) {
         if (message.action === 'getting-data') {
             this.setState({ data: message.data }, function () {
@@ -59,6 +64,15 @@ class ChartsAndFilters extends React.Component {
                 this.setState({ distribution: null, data: message.data }, function () {
                     this.setState({ distribution: distribution, data: message.data });
                 });
+
+                let dailyAmountSummaryData = getDailyAmount(message.data);
+                dailyAmountSummaryData = dailyAmountSummaryData.map(function (e) {
+                    return Object.keys(e).map(g => e[g])
+                });
+
+                dailyAmountSummaryData.unshift(['DATE', 'AMOUNT']);
+
+                this.setState({ dailyAmountSummaryData })
             })
         }
     }
@@ -89,7 +103,7 @@ class ChartsAndFilters extends React.Component {
     }
 
     handleClosePopover() {
-        this.setState({ openPopover: false, popoverAnchorEl: null,  rowsSum: this.state.data.map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0)  })
+        this.setState({ openPopover: false, popoverAnchorEl: null, rowsSum: this.state.data.map(e => e.AMOUNT * 1).reduce((a, b) => a + b, 0) })
     }
 
     render() {
@@ -136,7 +150,7 @@ class ChartsAndFilters extends React.Component {
                     open={this.state.graphDialog} maxWidth='lg' fullWidth={true}>
                     <DialogTitle>Expenses Chart</DialogTitle>
                     <GraphDialogDisplay
-                        graphIndex={this.state.graphIndex} />
+                        graphIndex={this.state.graphIndex} data={this.state.dailyAmountSummaryData}/>
                 </Dialog>
 
                 <Popover
