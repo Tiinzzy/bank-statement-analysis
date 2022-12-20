@@ -66,6 +66,8 @@ class ExpenceGrid extends React.Component {
 
         } else if (message.action === 'refresh-data') {
             this.setState({ data: message.data, rows: message.data });
+        } else if (message.action === 'category-changed-to-new-one') {
+            this.setState({ category: message.category })
         }
     }
 
@@ -106,7 +108,7 @@ class ExpenceGrid extends React.Component {
                     autoHideDuration={2000}
                     onClose={this.handleCloseSnack}>
                     <SnackbarContent style={{ backgroundColor: '#63A355', color: 'white', fontWeight: 'bold' }}
-                        message={<div style={{ textAlign: 'center', width: 400 }}>Category Successfully Changed to {this.state.clickedRow.category}</div>} />
+                        message={<div style={{ textAlign: 'center', width: 400 }}>Category Successfully Changed to {this.state.category}</div>} />
                 </Snackbar>
             </div>
         );
