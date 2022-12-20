@@ -53,7 +53,7 @@
         "DESC": "MAGASIN CDN TIRE #0043 WESTMOUNT QC",
         "AMOUNT": "61.24",
         "id": "1007",
-        "category": "None"
+        "category": "Houseware"
     },
     "1008": {
         "DATE": "2022-10-05",
@@ -102,14 +102,14 @@
         "DESC": "PHARMAPRIX #1937",
         "AMOUNT": "22.82",
         "id": "1014",
-        "category": "None"
+        "category": "Medicine"
     },
     "1015": {
         "DATE": "2022-10-10",
         "DESC": "FAMOUS PLAYER 9406QPS MONTREAL QC",
         "AMOUNT": "34.74",
         "id": "1015",
-        "category": "None"
+        "category": "Entertainment"
     },
     "1016": {
         "DATE": "2022-10-10",
@@ -151,7 +151,7 @@
         "DESC": "PHARMAPRIX #1825 MONTREAL QC",
         "AMOUNT": "10.33",
         "id": "1021",
-        "category": "None"
+        "category": "Medicine"
     },
     "1022": {
         "DATE": "2022-10-14",
@@ -172,7 +172,7 @@
         "DESC": "CAFE DES AMIS PAVILLON MONTREAL QC",
         "AMOUNT": "10.91",
         "id": "1024",
-        "category": "None"
+        "category": "Dining"
     },
     "1025": {
         "DATE": "2022-10-15",
@@ -186,14 +186,14 @@
         "DESC": "IGA 8253",
         "AMOUNT": "38.18",
         "id": "1026",
-        "category": "None"
+        "category": "Groceries"
     },
     "1027": {
         "DATE": "2022-10-16",
         "DESC": "IGA 8253",
         "AMOUNT": "5.27",
         "id": "1027",
-        "category": "None"
+        "category": "Groceries"
     },
     "1028": {
         "DATE": "2022-10-16",
@@ -207,7 +207,7 @@
         "DESC": "MAGASIN CDN TIRE #00435",
         "AMOUNT": "51.73",
         "id": "1029",
-        "category": "None"
+        "category": "Houseware"
     },
     "1030": {
         "DATE": "2022-10-17",
@@ -263,14 +263,14 @@
         "DESC": "PHARMAPRIX #1937",
         "AMOUNT": "21.45",
         "id": "1037",
-        "category": "None"
+        "category": "Medicine"
     },
     "1038": {
         "DATE": "2022-10-22",
         "DESC": "IGA 8253 WESTMOUNT QC",
         "AMOUNT": "29.96",
         "id": "1038",
-        "category": "None"
+        "category": "Groceries"
     },
     "1039": {
         "DATE": "2022-10-22",
@@ -291,7 +291,7 @@
         "DESC": "NETFLIX.COM",
         "AMOUNT": "11.49",
         "id": "1041",
-        "category": "None"
+        "category": "Entertainment"
     },
     "1042": {
         "DATE": "2022-10-23",
@@ -305,7 +305,7 @@
         "DESC": "BUREAU EN GROS #22",
         "AMOUNT": "9.48",
         "id": "1043",
-        "category": "None"
+        "category": "Misc"
     },
     "1044": {
         "DATE": "2022-10-24",
@@ -319,28 +319,28 @@
         "DESC": "ROSETTI",
         "AMOUNT": "14.50",
         "id": "1045",
-        "category": "None"
+        "category": "Dining"
     },
     "1046": {
         "DATE": "2022-10-25",
         "DESC": "PHARMAPRIX #0045",
         "AMOUNT": "27.08",
         "id": "1046",
-        "category": "None"
+        "category": "Medicine"
     },
     "1047": {
         "DATE": "2022-10-26",
         "DESC": "FIDO Mobile ******9102 888-764-3771 ON",
         "AMOUNT": "260.53",
         "id": "1047",
-        "category": "None"
+        "category": "Utilities"
     },
     "1048": {
         "DATE": "2022-10-27",
         "DESC": "PHARMAPRIX #1912 MONTREAL QC",
         "AMOUNT": "12.03",
         "id": "1048",
-        "category": "None"
+        "category": "Medicine"
     },
     "1049": {
         "DATE": "2022-10-27",
@@ -396,7 +396,7 @@
         "DESC": "FIDO STORE 5238",
         "AMOUNT": "40.24",
         "id": "1056",
-        "category": "Misc"
+        "category": "Utilities"
     },
     "1057": {
         "DATE": "2022-10-29",
@@ -431,28 +431,28 @@
         "DESC": "IGA 8253 WESTMOUNT QC",
         "AMOUNT": "11.67",
         "id": "1061",
-        "category": "None"
+        "category": "Groceries"
     },
     "1062": {
         "DATE": "2022-11-01",
         "DESC": "BUREAU EN GROS #22 MONTREAL QC",
         "AMOUNT": "15.17",
         "id": "1062",
-        "category": "None"
+        "category": "Misc"
     },
     "1063": {
         "DATE": "2022-11-01",
         "DESC": "WINNERS 366",
         "AMOUNT": "45.98",
         "id": "1063",
-        "category": "None"
+        "category": "Houseware"
     },
     "1064": {
         "DATE": "2022-11-02",
         "DESC": "PHARMAPRIX #1912",
         "AMOUNT": "22.94",
         "id": "1064",
-        "category": "None"
+        "category": "Medicine"
     },
     "1065": {
         "DATE": "2022-11-02",
@@ -494,35 +494,35 @@
         "DESC": "STATION 10 MONTREAL QC",
         "AMOUNT": "26.38",
         "id": "1070",
-        "category": "None"
+        "category": "Misc"
     },
     "1071": {
         "DATE": "2022-11-04",
         "DESC": "OLLY FRESCO'S CIA MONTREAL QC",
         "AMOUNT": "31.99",
         "id": "1071",
-        "category": "None"
+        "category": "Dining"
     },
     "1072": {
         "DATE": "2022-11-05",
         "DESC": "SUPER C ATWATER 5952 MONTREAL QC",
         "AMOUNT": "29.49",
         "id": "1072",
-        "category": "None"
+        "category": "Groceries"
     },
     "1073": {
         "DATE": "2022-11-05",
         "DESC": "WINNERS 340",
         "AMOUNT": "45.97",
         "id": "1073",
-        "category": "None"
+        "category": "Houseware"
     },
     "1074": {
         "DATE": "2022-11-06",
         "DESC": "PROVIGO MICHEL LEFEBVR",
         "AMOUNT": "42.59",
         "id": "1074",
-        "category": "None"
+        "category": "Groceries"
     },
     "1075": {
         "DATE": "2022-11-07",
@@ -536,7 +536,7 @@
         "DESC": "VIA RAIL CANADA #33004 MONTREAL QC",
         "AMOUNT": "449.55",
         "id": "1076",
-        "category": "None"
+        "category": "Commute"
     },
     "1077": {
         "DATE": "2022-11-08",
@@ -564,7 +564,7 @@
         "DESC": "LA FABRIQUE DE BAGEL MONTREAL QC",
         "AMOUNT": "11.59",
         "id": "1080",
-        "category": "None"
+        "category": "Dining"
     },
     "1081": {
         "DATE": "2022-11-10",
@@ -592,7 +592,7 @@
         "DESC": "MUFFIN PLUS DESJARDINS MONTREAL QC",
         "AMOUNT": "7.36",
         "id": "1084",
-        "category": "None"
+        "category": "Dining"
     },
     "1085": {
         "DATE": "2022-11-12",
@@ -613,14 +613,14 @@
         "DESC": "WINNERS 470 MONTREAL QC",
         "AMOUNT": "34.48",
         "id": "1087",
-        "category": "None"
+        "category": "Houseware"
     },
     "1088": {
         "DATE": "2022-11-12",
         "DESC": "STH #221 COMPLEXE DESJ MONTREAL QC",
         "AMOUNT": "74.29",
         "id": "1088",
-        "category": "None"
+        "category": "Dining"
     },
     "1089": {
         "DATE": "2022-11-13",
@@ -634,7 +634,7 @@
         "DESC": "POPEYE'S MONTREAL MONTREAL QC",
         "AMOUNT": "137.96",
         "id": "1090",
-        "category": "None"
+        "category": "Groceries"
     },
     "1091": {
         "DATE": "2022-11-14",
@@ -648,7 +648,7 @@
         "DESC": "AU PAIN DORE MONTREAL QC",
         "AMOUNT": "12.24",
         "id": "1092",
-        "category": "None"
+        "category": "Dining"
     },
     "1093": {
         "DATE": "2022-11-15",

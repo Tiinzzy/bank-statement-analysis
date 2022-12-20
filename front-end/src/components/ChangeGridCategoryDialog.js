@@ -70,6 +70,7 @@ class ChangeGridCategoryDialog extends React.Component {
 
     handleChangeCategory(e) {
         this.setState({ category: e.target.value });
+        shared.callExpenceGrid({ action: 'category-changed-to-new-one', category: e.target.value })
     }
 
     render() {
@@ -102,7 +103,7 @@ class ChangeGridCategoryDialog extends React.Component {
 
                     <Box style={{ display: 'flex' }}>
                         <FormControlLabel
-                            control={<Checkbox checked={this.state.checkBox} onChange={(e) => this.handleCheckBox(e)} color="secondary"/>}
+                            control={<Checkbox checked={this.state.checkBox} onChange={(e) => this.handleCheckBox(e)} color="secondary" />}
                             label={'Apply ' + this.state.category + ' category for similar descriptions?'} />
                     </Box>
                     <br />
