@@ -10,7 +10,7 @@ import SnackbarContent from '@mui/material/SnackbarContent'
 
 import { shared } from './shared';
 import { constants } from './constants';
-import { getCsvFileFromBackend } from "./functions";
+import { getCsvFileFromBackend, getColumns } from "./functions";
 
 
 class Body extends React.Component {
@@ -20,7 +20,7 @@ class Body extends React.Component {
             data: [],
             openDialog: false,
             openSnack: false,
-            showHelp: true
+            showHelp: false
         };
         this.callBody = this.callBody.bind(this);
         this.handleCloseDialog = this.handleCloseDialog.bind(this);
@@ -30,7 +30,7 @@ class Body extends React.Component {
 
     async componentDidMount() {
         let data = await getCsvFileFromBackend();
-        this.setState({ data });
+        this.setState({ data, showHelp: (getColumns(data[0]).length === 0) });
         shared.callChartsAndFilters({ action: 'getting-data', data: data })
     }
 
@@ -67,9 +67,10 @@ class Body extends React.Component {
     render() {
         return (
             <Box style={{ padding: 15 }}>
-                {this.state.data.length > 0 ?
-                    <ExpenceGrid data={this.state.data} />
-                    : <Box pb={10}>
+                {this.state.data.length > 0 && !this.state.showHelp &&
+                    <ExpenceGrid data={this.state.data} />}
+                {this.state.showHelp &&
+                    <Box pb={10}>
                         <ol>
                             {constants.help.map((e, i) => (
                                 <li key={i}>{e}</li>
