@@ -135,6 +135,38 @@ function getWeekDaySummary(data, wdId) {
     return data.filter(d => string2Date(d.DATE).getDay() === wdId).map(e => e.AMOUNT * 1).reduce((a, b) => (a + b), 0);
 }
 
+export function getDetailedtWeekDaysAmount(data) {
+    let result = [0, 1, 2, 3, 4, 5, 6].map(d => getWeekDaysDetailedSummary(data, d));
+    
+    let title = [...constants.categories];
+    title.shift()
+    result.unshift(title);
+
+    for (let i = 0; i < result.length; i++) {
+        if (i === 0) {
+            result[i].unshift('Day of weeks');
+        } else {
+            result[i].unshift(constants.daysOfWeek[i-1]);
+        }                
+    }
+    
+    return result;
+}
+
+function getWeekDaysDetailedSummary(data, d) {
+    let dayOfWeekResult = [];
+    constants.categories.filter(c => c !== 'All').forEach(c => {
+        let sum = getDetailedAMount(data, d, c);
+        dayOfWeekResult.push(sum);
+    })
+    return dayOfWeekResult;
+}
+
+function getDetailedAMount(data, day, category) {
+    let result = data.filter(d => d.CATEGORY === category && string2Date(d.DATE).getDay() === day).map(e => e.AMOUNT * 1).reduce((a, b) => (a + b), 0);
+    return result;
+}
+
 function string2Date(dateStr) {
     let parts = dateStr.split('-');
     let d = new Date();

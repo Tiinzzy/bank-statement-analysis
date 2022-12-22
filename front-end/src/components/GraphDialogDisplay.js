@@ -22,6 +22,7 @@ export default function GraphDialogDisplay(props) {
             {props.graphIndex === 3 && <Chart
                 chartType="Bar"
                 height={window.innerHeight / 2}
+                data={props.detailedData}
             />}
         </Box>
     );
