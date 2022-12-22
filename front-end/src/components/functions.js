@@ -128,7 +128,7 @@ function getDailyAmountSummary(data, d) {
 
 export function getWeekDaysAmount(data) {
     const nums = [0, 1, 2, 3, 4, 5, 6];
-    return nums.map(wdId => { return { Date: constants.dayOfWeek[wdId], AMOUNT: getWeekDaySummary(data, wdId) } });
+    return nums.map(wdId => { return { Date: constants.daysOfWeek[wdId], AMOUNT: getWeekDaySummary(data, wdId) } });
 }
 
 function getWeekDaySummary(data, wdId) {
