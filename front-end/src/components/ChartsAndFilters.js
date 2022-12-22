@@ -70,12 +70,15 @@ class ChartsAndFilters extends React.Component {
                     return Object.keys(e).map(g => e[g])
                 });
 
-                // let weeklySummaryData = getWeekDaysAmount(message.data);
-                // console.log(weeklySummaryData);
-                
-                dailyAmountSummaryData.unshift(['DATE', 'AMOUNT']);
+                let weeklyDaysSummaryData = getWeekDaysAmount(message.data);
+                weeklyDaysSummaryData = weeklyDaysSummaryData.map(function (e) {
+                    return Object.keys(e).map(g => e[g])
+                });
 
-                this.setState({ dailyAmountSummaryData })
+                dailyAmountSummaryData.unshift(['DATE', 'AMOUNT']);
+                weeklyDaysSummaryData.unshift(['DAYS', 'AMOUNT']);
+
+                this.setState({ dailyAmountSummaryData, weeklyDaysSummaryData })
             })
         }
     }
@@ -153,7 +156,7 @@ class ChartsAndFilters extends React.Component {
                     open={this.state.graphDialog} maxWidth='lg' fullWidth={true}>
                     <DialogTitle>Expenses Chart</DialogTitle>
                     <GraphDialogDisplay
-                        graphIndex={this.state.graphIndex} data={this.state.dailyAmountSummaryData}/>
+                        graphIndex={this.state.graphIndex} dailyData={this.state.dailyAmountSummaryData} weeklyData={this.state.weeklyDaysSummaryData}/>
                 </Dialog>
 
                 <Popover
