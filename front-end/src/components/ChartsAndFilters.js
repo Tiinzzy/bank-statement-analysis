@@ -15,7 +15,7 @@ import GraphDialogDisplay from "./GraphDialogDisplay";
 
 import { shared } from './shared';
 import { constants } from './constants';
-import { getDailyAmount } from './functions';
+import { getDailyAmount, getWeekDaysAmount } from './functions';
 
 const MAX_BAR_WIDTH = 800;
 
@@ -70,6 +70,9 @@ class ChartsAndFilters extends React.Component {
                     return Object.keys(e).map(g => e[g])
                 });
 
+                // let weeklySummaryData = getWeekDaysAmount(message.data);
+                // console.log(weeklySummaryData);
+                
                 dailyAmountSummaryData.unshift(['DATE', 'AMOUNT']);
 
                 this.setState({ dailyAmountSummaryData })
