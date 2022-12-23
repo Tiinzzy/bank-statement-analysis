@@ -41,9 +41,6 @@ class ChartsAndFilters extends React.Component {
         shared.callChartsAndFilters = this.callChartsAndFilters;
     }
 
-    componentDidMount() {
-
-    }
 
     callChartsAndFilters(message) {
         if (message.action === 'getting-data') {
@@ -76,9 +73,6 @@ class ChartsAndFilters extends React.Component {
                 });
 
                 let detailedSummaryData = getDetailedtWeekDaysAmount(message.data);
-                detailedSummaryData = detailedSummaryData.map(function (e) {
-                    return Object.keys(e).map(g => e[g])
-                });
 
                 dailyAmountSummaryData.unshift(['DATE', 'AMOUNT']);
                 weeklyDaysSummaryData.unshift(['DAYS', 'AMOUNT']);
