@@ -15,7 +15,7 @@ import GraphDialogDisplay from "./GraphDialogDisplay";
 
 import { shared } from './shared';
 import { constants } from './constants';
-import { getDailyAmount, getWeekDaysAmount } from './functions';
+import { getDailyAmount, getWeekDaysAmount, getDetailedtWeekDaysAmount } from './functions';
 
 const MAX_BAR_WIDTH = 800;
 
@@ -41,9 +41,6 @@ class ChartsAndFilters extends React.Component {
         shared.callChartsAndFilters = this.callChartsAndFilters;
     }
 
-    componentDidMount() {
-
-    }
 
     callChartsAndFilters(message) {
         if (message.action === 'getting-data') {
@@ -70,12 +67,17 @@ class ChartsAndFilters extends React.Component {
                     return Object.keys(e).map(g => e[g])
                 });
 
-                // let weeklySummaryData = getWeekDaysAmount(message.data);
-                // console.log(weeklySummaryData);
-                
-                dailyAmountSummaryData.unshift(['DATE', 'AMOUNT']);
+                let weeklyDaysSummaryData = getWeekDaysAmount(message.data);
+                weeklyDaysSummaryData = weeklyDaysSummaryData.map(function (e) {
+                    return Object.keys(e).map(g => e[g])
+                });
 
-                this.setState({ dailyAmountSummaryData })
+                let detailedSummaryData = getDetailedtWeekDaysAmount(message.data);
+
+                dailyAmountSummaryData.unshift(['DATE', 'AMOUNT']);
+                weeklyDaysSummaryData.unshift(['DAYS', 'AMOUNT']);
+
+                this.setState({ dailyAmountSummaryData, weeklyDaysSummaryData, detailedSummaryData })
             })
         }
     }
@@ -153,7 +155,10 @@ class ChartsAndFilters extends React.Component {
                     open={this.state.graphDialog} maxWidth='lg' fullWidth={true}>
                     <DialogTitle>Expenses Chart</DialogTitle>
                     <GraphDialogDisplay
-                        graphIndex={this.state.graphIndex} data={this.state.dailyAmountSummaryData}/>
+                        graphIndex={this.state.graphIndex}
+                        dailyData={this.state.dailyAmountSummaryData}
+                        weeklyData={this.state.weeklyDaysSummaryData}
+                        detailedData={this.state.detailedSummaryData} />
                 </Dialog>
 
                 <Popover
