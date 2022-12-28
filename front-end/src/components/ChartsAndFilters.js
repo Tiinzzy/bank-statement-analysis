@@ -43,7 +43,7 @@ class ChartsAndFilters extends React.Component {
 
 
     callChartsAndFilters(message) {
-        if (message.action === 'getting-data') {
+        if (message.action === 'getting-data' || message.action === 'update-to-new-data') {
             this.setState({ data: message.data }, function () {
                 let distribution = {};
 

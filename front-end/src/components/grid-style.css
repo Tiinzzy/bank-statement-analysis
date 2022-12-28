@@ -1,0 +1,11 @@
+.MuiDataGrid-cell {
+    background-color: white;
+}
+
+.css-1jbbcbn-MuiDataGrid-columnHeaderTitle {
+    color: '#eaeaea';
+}
+
+.MuiDataGrid-row:nth-child(2) {
+   background-color: white
+}

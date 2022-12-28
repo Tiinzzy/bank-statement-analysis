@@ -41,7 +41,7 @@ export function getColumns(row) {
 }
 
 export function getGridHeight() {
-    let height = window.innerHeight - 180;
+    let height = window.innerHeight - 220;
     if (height < 100) {
         height = 100;
     }
@@ -163,7 +163,7 @@ function getWeekDaysDetailedSummary(data, d) {
 }
 
 function getDetailedAMount(data, day, category) {
-    let result = data.filter(d => d.CATEGORY === category && string2Date(d.DATE).getDay() === day).map(e => e.AMOUNT * 1).reduce((a, b) => (a + b), 0);
+    let result = data.filter(d => d.category === category && string2Date(d.DATE).getDay() === day).map(e => e.AMOUNT * 1).reduce((a, b) => (a + b), 0);
     return result;
 }
 

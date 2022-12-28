@@ -10,7 +10,7 @@ export default function GraphDialogDisplay(props) {
         bars: "horizontal",
         bar: { groupWidth: '75%' },
         legend: { position: 'top', maxLines: 3 },
-        chartArea: { 'width': '85%', 'height': '75%' }
+        chartArea: { 'width': 800, 'height': 300 }
     };
 
     return (
