@@ -1,8 +1,8 @@
 export const constants = {
     help: [
-        "First go to Upload File at the top of the page",
+        "First go to Select File at the right top of the page",
         "Select a file to uploead using the button",
-        "The file must be CSV to be read",
+        "The file must be in CSV format to be read",
         "When your file is uploaded, you will see a message that the file is compatibale or not",
         "If a previous file exist, your new upload will override that and you old data will be lost",
         "If youre satisfied with your file click on save button",
