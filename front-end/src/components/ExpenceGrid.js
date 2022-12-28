@@ -11,6 +11,8 @@ import ChangeGridCategoryDialog from "./ChangeGridCategoryDialog";
 import { shared } from './shared';
 import { getColumns, getGridHeight, getGridWidth } from "./functions";
 
+import "./grid-style.css";
+
 class ExpenceGrid extends React.Component {
     constructor(props) {
         super(props);
@@ -67,7 +69,7 @@ class ExpenceGrid extends React.Component {
 
         } else if (message.action === 'refresh-data') {
             this.setState({ data: message.data, rows: message.data.filter(e => this.state.selectedCategory === 'All' || e.category === this.state.selectedCategory) });
-            
+
         } else if (message.action === 'category-changed-to-new-one') {
             this.setState({ category: message.category })
         }
@@ -89,6 +91,7 @@ class ExpenceGrid extends React.Component {
         return (
             <div>
                 <DataGrid
+                    sx={{ color: '#303030', bgcolor: '#f5f5f5'}}
                     style={{ height: this.state.height, width: this.state.width }}
                     hideFooterPagination={true}
                     hideFooter={true}
