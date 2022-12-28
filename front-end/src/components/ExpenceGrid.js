@@ -22,7 +22,8 @@ class ExpenceGrid extends React.Component {
             clickedRow: '',
             height: getGridHeight(),
             width: getGridWidth(),
-            openSnack: false
+            openSnack: false,
+            selectedCategory: 'All'
         };
         this.callExpenceGrid = this.callExpenceGrid.bind(this);
         this.handleGridClick = this.handleGridClick.bind(this);
@@ -62,10 +63,11 @@ class ExpenceGrid extends React.Component {
 
         } else if (message.action === 'filter-over-category') {
             let rows = this.state.data.filter(e => message.category === 'All' || e.category === message.category);
-            this.setState({ rows: rows });
+            this.setState({ rows: rows, selectedCategory: message.category });
 
         } else if (message.action === 'refresh-data') {
-            this.setState({ data: message.data, rows: message.data });
+            this.setState({ data: message.data, rows: message.data.filter(e => this.state.selectedCategory === 'All' || e.category === this.state.selectedCategory) });
+            
         } else if (message.action === 'category-changed-to-new-one') {
             this.setState({ category: message.category })
         }
