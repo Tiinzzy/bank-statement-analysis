@@ -41,7 +41,7 @@ export function getColumns(row) {
 }
 
 export function getGridHeight() {
-    let height = window.innerHeight - 180;
+    let height = window.innerHeight - 220;
     if (height < 100) {
         height = 100;
     }
