@@ -50,6 +50,7 @@ class Body extends React.Component {
             let data = await getCsvFileFromBackend();
             this.setState({ data: data }, function () {
                 shared.callExpenceGrid({ action: 'refresh-data', data: data, showHelp: false });
+                shared.callChartsAndFilters({ action: 'update-to-new-data', data: data })
             });
         }
 
