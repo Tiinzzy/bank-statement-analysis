@@ -13,7 +13,7 @@
 <p>BSA allows users to: </p><Li> Set categories for their expenses</li>
 <li>Filter through their expenses</li> 
 <li>Monitor their total spending for each category</li>
-<li>Have overall view or detailed view of expoensense on graphs</li>
+<li>Have overall view or detailed view of expenses on graphs</li>
 </p>
 
 <h4>User Installation</h4>
