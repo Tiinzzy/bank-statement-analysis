@@ -4,7 +4,7 @@ import { constants } from './constants';
 const csv = require('csvtojson')
 
 export async function getDataFromPublic() {
-    return axios('/some-costs.csv').then(result => {
+    return axios('/bank/some-costs.csv').then(result => {
         if (result.status === 200) {
             return csv().fromString(result.data)
                 .then((jCsv) => {
@@ -57,7 +57,7 @@ export function getGridWidth() {
 }
 
 export async function saveCsvFile(data) {
-    return axios.post('/save-csv-file', {}, { params: { data: data } })
+    return axios.post('/bank/save-csv-file', {}, { params: { data: data } })
         .then(response => {
             if (response.status === 200) {
                 return response.data.success;
@@ -71,7 +71,7 @@ export async function saveCsvFile(data) {
 }
 
 export async function setNewCategory(query) {
-    return axios.post('/set-categories-for-csv-file', {}, { params: { query: query } })
+    return axios.post('/bank/set-categories-for-csv-file', {}, { params: { query: query } })
         .then(response => {
             if (response.status === 200) {
                 return response.data.success;
@@ -102,7 +102,7 @@ export function stringWordsEqual(s1, s2, wordCount = 2) {
 }
 
 export async function getCsvFileFromBackend() {
-    return axios.get('/send-the-saved-csv-file', {}, { params: {} })
+    return axios.get('/bank/send-the-saved-csv-file', {}, { params: {} })
         .then(response => {
             if (response.status === 200) {
                 return Object.values(response.data);
