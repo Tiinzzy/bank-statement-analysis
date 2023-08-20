@@ -10,7 +10,7 @@ module.exports = {
   },
   entry : "./index.js",
   output : {
-    filename: "output.js",
+    filename: "server.js",
     path: path.resolve(__dirname, "dist")
   },
   plugins: [
